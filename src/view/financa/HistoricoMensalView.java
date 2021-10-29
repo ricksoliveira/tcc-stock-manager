@@ -8,9 +8,13 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.bean.Financa;
 import model.dao.FinancaDAO;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 import view.HomeDashboardView;
 
 /**
@@ -78,7 +82,7 @@ public class HistoricoMensalView extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JToolBar.Separator();
         buttonVoltar = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
-        jButton1 = new javax.swing.JButton();
+        buttonRelatorio = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
         jButton2 = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JToolBar.Separator();
@@ -122,12 +126,17 @@ public class HistoricoMensalView extends javax.swing.JFrame {
         jToolBar1.add(buttonVoltar);
         jToolBar1.add(jSeparator3);
 
-        jButton1.setText("relatorio 1");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setMargin(new java.awt.Insets(3, 14, 3, 14));
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton1);
+        buttonRelatorio.setText("relatorio 1");
+        buttonRelatorio.setFocusable(false);
+        buttonRelatorio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonRelatorio.setMargin(new java.awt.Insets(3, 14, 3, 14));
+        buttonRelatorio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        buttonRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRelatorioActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(buttonRelatorio);
         jToolBar1.add(jSeparator4);
 
         jButton2.setText("relatorio 2");
@@ -248,6 +257,41 @@ public class HistoricoMensalView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonVoltarActionPerformed
 
+    private void buttonRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRelatorioActionPerformed
+        
+        if(financaTable.getSelectedRow() != -1){
+            
+            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja gerar o relatório?", "Atenção", JOptionPane.YES_NO_OPTION);
+            if(confirm == JOptionPane.YES_OPTION){
+                try {
+                    FinancaDAO financaDAO = new FinancaDAO();
+                    int mes = (int) financaTable.getValueAt(financaTable.getSelectedRow(), 0);
+                    int ano = (int) financaTable.getValueAt(financaTable.getSelectedRow(), 1);
+
+                    JasperPrint jpPrint = financaDAO.getReport(mes, ano);
+
+                    JasperViewer jasperViewer = new JasperViewer(jpPrint, false);
+
+                    jasperViewer.setAlwaysOnTop(true);
+                    jasperViewer.setResizable(false);
+                    jasperViewer.setSize(1000, 1000);
+                    jasperViewer.setVisible(true);
+                    
+
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(HistoricoMensalView.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (JRException ex) {
+                    Logger.getLogger(HistoricoMensalView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Por favor selecione um relatório.");
+        }
+        
+    }//GEN-LAST:event_buttonRelatorioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -290,9 +334,9 @@ public class HistoricoMensalView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonHome;
+    private javax.swing.JButton buttonRelatorio;
     private javax.swing.JButton buttonVoltar;
     private javax.swing.JTable financaTable;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

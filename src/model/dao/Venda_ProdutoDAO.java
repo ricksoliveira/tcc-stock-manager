@@ -617,7 +617,6 @@ public class Venda_ProdutoDAO {
     }
     
     
-    
     public JasperPrint getReport(int id) throws SQLException, JRException{
         //<editor-fold defaultstate="collapsed" desc="GET VALOR TOTAL DA VENDA">
         Connection con = ConnectionFactory.getConnection();

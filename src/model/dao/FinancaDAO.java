@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 
 public class FinancaDAO {
     
@@ -119,6 +123,39 @@ public class FinancaDAO {
         }
         
         return auth;
+//</editor-fold>
+    }
+    
+    public JasperPrint getReport(int mes, int ano) throws SQLException, JRException{
+        //<editor-fold defaultstate="collapsed" desc="GET VALOR TOTAL DA VENDA">
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        Financa financa = new Financa();
+        
+        JasperPrint jpPrint = null;
+        
+        try{
+            
+            stmt = con.prepareStatement("SELECT * FROM financa WHERE mes = ? AND ano = ?");
+            stmt.setInt(1, mes);
+            stmt.setInt(2, ano);
+            rs = stmt.executeQuery();
+            
+            JRResultSetDataSource resultDs = new JRResultSetDataSource(rs);
+            
+            jpPrint = JasperFillManager.fillReport("FinancaMensal.jasper", null, resultDs);
+            
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro ao exibir lista de Vendas: " + e);
+        }
+        finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return jpPrint;
 //</editor-fold>
     }
     
