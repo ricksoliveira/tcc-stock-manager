@@ -335,8 +335,8 @@ public class FinancaView extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        lancamentoButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        buttonLancamento = new javax.swing.JButton();
+        buttonHistorico = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
 
@@ -1057,21 +1057,21 @@ public class FinancaView extends javax.swing.JFrame {
             .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
         );
 
-        lancamentoButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lancamentoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/chart_organisation.png"))); // NOI18N
-        lancamentoButton.setText("Realizar Lançamento");
-        lancamentoButton.addActionListener(new java.awt.event.ActionListener() {
+        buttonLancamento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        buttonLancamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/chart_organisation.png"))); // NOI18N
+        buttonLancamento.setText("Realizar Lançamento");
+        buttonLancamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lancamentoButtonActionPerformed(evt);
+                buttonLancamentoActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/calendar.png"))); // NOI18N
-        jButton1.setText("Histórico Mensal");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonHistorico.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        buttonHistorico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/calendar.png"))); // NOI18N
+        buttonHistorico.setText("Histórico Mensal");
+        buttonHistorico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonHistoricoActionPerformed(evt);
             }
         });
 
@@ -1094,8 +1094,8 @@ public class FinancaView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(127, 127, 127)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lancamentoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(buttonHistorico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonLancamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(80, 80, 80))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -1126,9 +1126,9 @@ public class FinancaView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                        .addComponent(lancamentoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))))
         );
 
@@ -1220,7 +1220,7 @@ public class FinancaView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCategoriaItemStateChanged
 
-    private void lancamentoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lancamentoButtonActionPerformed
+    private void buttonLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLancamentoActionPerformed
         
         try {
             FinancaDAO financaDAO = new FinancaDAO();
@@ -1265,9 +1265,9 @@ public class FinancaView extends javax.swing.JFrame {
         }
         
 
-    }//GEN-LAST:event_lancamentoButtonActionPerformed
+    }//GEN-LAST:event_buttonLancamentoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHistoricoActionPerformed
         try {
             HistoricoMensalView historicoMensalView = new HistoricoMensalView();
             historicoMensalView.setVisible(true);
@@ -1275,7 +1275,7 @@ public class FinancaView extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(FinancaView.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buttonHistoricoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1321,12 +1321,13 @@ public class FinancaView extends javax.swing.JFrame {
     private javax.swing.JProgressBar BarraData;
     private javax.swing.JLabel DataFim;
     private javax.swing.JLabel DataInicio;
+    private javax.swing.JButton buttonHistorico;
+    private javax.swing.JButton buttonLancamento;
     private javax.swing.JButton buttonToHome;
     private javax.swing.JComboBox<Object> cbCategoria;
     private javax.swing.JTextField cmvTxt;
     private javax.swing.JTextField data;
     private javax.swing.JTextField faturamentoTotalTxt;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -1374,7 +1375,6 @@ public class FinancaView extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar jToolBar2;
-    private javax.swing.JButton lancamentoButton;
     private javax.swing.JTextField lucroTxt;
     private javax.swing.JTextField margemTxt;
     private javax.swing.JTextField mesAtual;
