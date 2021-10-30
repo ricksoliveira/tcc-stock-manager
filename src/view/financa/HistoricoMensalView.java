@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view.financa;
 
+import controller.FinancaController;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,22 +30,19 @@ public class HistoricoMensalView extends javax.swing.JFrame {
         this.setIconImage(logo.getImage());
         this.setTitle("Gerenciador de Estoque");
         
-        
-        
-        this.readTable();
+        this.readAcumumlativoTable();
+        this.readMensalTable();
     }
     
-    public void readTable() throws SQLException{ 
-        //<editor-fold defaultstate="collapsed" desc="READ FINANÇAS">
-        DefaultTableModel model = (DefaultTableModel) financaTable.getModel();
+    public void readAcumumlativoTable() throws SQLException{ 
+        //<editor-fold defaultstate="collapsed" desc="READ FINANÇAS ACUMULATIVAS">
+        DefaultTableModel model = (DefaultTableModel) financaAcumulativaTable.getModel();
         
         model.setNumRows(0);
         
         FinancaDAO financaDAO = new FinancaDAO();
         
         for(Financa f : financaDAO.listAllFinancas()){
-            
-            
             model.addRow(new Object[]{
                 f.getMes(),
                 f.getAno(),
@@ -62,6 +56,33 @@ public class HistoricoMensalView extends javax.swing.JFrame {
                 f.getQuantidade_estoque(),
                 f.getNumero_categorias()
             });
+        }
+//</editor-fold>
+    }
+    
+    public void readMensalTable() throws SQLException{ 
+        //<editor-fold defaultstate="collapsed" desc="READ FINANÇAS MENSAIS">
+        DefaultTableModel model = (DefaultTableModel) financaMensalTable.getModel();
+        
+        model.setNumRows(0);
+        
+        FinancaController financaController = new FinancaController();
+        
+        for(Financa f : financaController.listMonthlyFinance()){
+            model.addRow(new Object[]{
+                f.getMes(),
+                f.getAno(),
+                String.format("%,.2f", f.getFaturamento_bruto()),
+                String.format("%,.2f", f.getDescontos()),
+                String.format("%,.2f", f.getFaturamento_liquido()),
+                String.format("%,.2f", f.getCmv()),
+                String.format("%,.2f", f.getLucro()),
+                String.format("%,.1f", f.getMargem_lucro()),
+                String.format("%,.2f", f.getCusto_total_estoque()),
+                f.getQuantidade_estoque(),
+                f.getNumero_categorias()
+            }); 
+            
         }
 //</editor-fold>
     }
@@ -88,7 +109,10 @@ public class HistoricoMensalView extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JToolBar.Separator();
         titulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        financaTable = new javax.swing.JTable();
+        financaAcumulativaTable = new javax.swing.JTable();
+        titulo1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        financaMensalTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
 
@@ -126,9 +150,9 @@ public class HistoricoMensalView extends javax.swing.JFrame {
         jToolBar1.add(buttonVoltar);
         jToolBar1.add(jSeparator3);
 
-        buttonRelatorio.setText("relatorio 1");
+        buttonRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/report.png"))); // NOI18N
+        buttonRelatorio.setText("Relatório Acumulativo");
         buttonRelatorio.setFocusable(false);
-        buttonRelatorio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonRelatorio.setMargin(new java.awt.Insets(3, 14, 3, 14));
         buttonRelatorio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         buttonRelatorio.addActionListener(new java.awt.event.ActionListener() {
@@ -151,13 +175,13 @@ public class HistoricoMensalView extends javax.swing.JFrame {
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("HISTÓRICO DE FINANÇAS MENSAIS");
 
-        financaTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        financaTable.setModel(new javax.swing.table.DefaultTableModel(
+        financaAcumulativaTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        financaAcumulativaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mês", "Ano", "Faturamento Bruto", "Descontos", "Faturamento Líquido", "CMV", "Lucro", "Margem", "Custo Estoque", "Qntde Estoque", "Nº Categorias"
+                "Mês", "Ano", "Fatur. Bruto", "Descontos", "Fatur. Líquido", "CMV", "Lucro", "Margem", "Custo Estoque", "Qntde Estoque", "Nº Categorias"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -168,27 +192,66 @@ public class HistoricoMensalView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(financaTable);
+        jScrollPane1.setViewportView(financaAcumulativaTable);
+        if (financaAcumulativaTable.getColumnModel().getColumnCount() > 0) {
+            financaAcumulativaTable.getColumnModel().getColumn(0).setPreferredWidth(20);
+            financaAcumulativaTable.getColumnModel().getColumn(1).setPreferredWidth(20);
+            financaAcumulativaTable.getColumnModel().getColumn(7).setPreferredWidth(20);
+            financaAcumulativaTable.getColumnModel().getColumn(10).setPreferredWidth(40);
+        }
+
+        titulo1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        titulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo1.setText("HISTÓRICO DE FINANÇAS ACUMULADAS");
+
+        financaMensalTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        financaMensalTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mês", "Ano", "Fatur. Bruto", "Descontos", "Fatur. Líquido", "CMV", "Lucro", "Margem", "Custo Estoque", "Qntde Estoque", "Nº Categorias"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(financaMensalTable);
+        if (financaMensalTable.getColumnModel().getColumnCount() > 0) {
+            financaMensalTable.getColumnModel().getColumn(0).setPreferredWidth(20);
+            financaMensalTable.getColumnModel().getColumn(1).setPreferredWidth(20);
+            financaMensalTable.getColumnModel().getColumn(7).setPreferredWidth(20);
+            financaMensalTable.getColumnModel().getColumn(10).setPreferredWidth(40);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1206, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1206, Short.MAX_VALUE)
+            .addComponent(titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(titulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1206, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(titulo1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(titulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 112, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -259,14 +322,14 @@ public class HistoricoMensalView extends javax.swing.JFrame {
 
     private void buttonRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRelatorioActionPerformed
         
-        if(financaTable.getSelectedRow() != -1){
+        if(financaAcumulativaTable.getSelectedRow() != -1){
             
             int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja gerar o relatório?", "Atenção", JOptionPane.YES_NO_OPTION);
             if(confirm == JOptionPane.YES_OPTION){
                 try {
                     FinancaDAO financaDAO = new FinancaDAO();
-                    int mes = (int) financaTable.getValueAt(financaTable.getSelectedRow(), 0);
-                    int ano = (int) financaTable.getValueAt(financaTable.getSelectedRow(), 1);
+                    int mes = (int) financaAcumulativaTable.getValueAt(financaAcumulativaTable.getSelectedRow(), 0);
+                    int ano = (int) financaAcumulativaTable.getValueAt(financaAcumulativaTable.getSelectedRow(), 1);
 
                     JasperPrint jpPrint = financaDAO.getReport(mes, ano);
 
@@ -336,12 +399,14 @@ public class HistoricoMensalView extends javax.swing.JFrame {
     private javax.swing.JButton buttonHome;
     private javax.swing.JButton buttonRelatorio;
     private javax.swing.JButton buttonVoltar;
-    private javax.swing.JTable financaTable;
+    private javax.swing.JTable financaAcumulativaTable;
+    private javax.swing.JTable financaMensalTable;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
@@ -349,5 +414,6 @@ public class HistoricoMensalView extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel titulo;
+    private javax.swing.JLabel titulo1;
     // End of variables declaration//GEN-END:variables
 }

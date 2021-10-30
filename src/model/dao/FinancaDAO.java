@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
@@ -127,7 +125,7 @@ public class FinancaDAO {
     }
     
     public JasperPrint getReport(int mes, int ano) throws SQLException, JRException{
-        //<editor-fold defaultstate="collapsed" desc="GET VALOR TOTAL DA VENDA">
+        //<editor-fold defaultstate="collapsed" desc="CREATE FINANCA ACUMULATIVA REPORT">
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
