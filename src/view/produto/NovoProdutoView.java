@@ -6,6 +6,9 @@
 package view.produto;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -48,6 +51,16 @@ public class NovoProdutoView extends javax.swing.JFrame {
             cbCategoria.addItem(c);
         }
         
+//        try {
+//            SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+//            Date a = dateForm.parse(teste.getText());
+//            SimpleDateFormat dateForm2 = new SimpleDateFormat("dd-MM-yyyy");
+//            String geee = dateForm2.format(a);
+//            JOptionPane.showMessageDialog(null, geee);
+//        } catch (ParseException ex) {
+//            Logger.getLogger(NovoProdutoView.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        
     }
 
     /**
@@ -85,8 +98,8 @@ public class NovoProdutoView extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        dataInsercaoTxt = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        dataInsercaoTxt = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         buttonCadastrar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
@@ -161,6 +174,8 @@ public class NovoProdutoView extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Data de inserção:");
 
+        dataInsercaoTxt.setDateFormatString("dd/MM/yyyy");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -195,13 +210,13 @@ public class NovoProdutoView extends javax.swing.JFrame {
                             .addComponent(codInternoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(descricaoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                             .addComponent(especificacoesTxt)
+                            .addComponent(condicaoTxt)
+                            .addComponent(dataInsercaoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dimensoesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dataInsercaoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(precoUnitarioTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(precoUnitarioTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                                 .addComponent(quantidadeTxt, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(precoCompraTxt, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(condicaoTxt))))
+                                .addComponent(precoCompraTxt, javax.swing.GroupLayout.Alignment.LEADING)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -248,11 +263,14 @@ public class NovoProdutoView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(precoUnitarioTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dataInsercaoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addGap(0, 68, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel12))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(dataInsercaoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(180, 205, 255));
@@ -329,16 +347,6 @@ public class NovoProdutoView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonToHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonToHomeActionPerformed
-        try {
-            ProdutosView produtosView = new ProdutosView();
-            produtosView.setVisible(true);
-            this.dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(NovoProdutoView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_buttonToHomeActionPerformed
-
     private void cbFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFornecedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbFornecedorActionPerformed
@@ -358,7 +366,7 @@ public class NovoProdutoView extends javax.swing.JFrame {
                     || especificacoesTxt.getText().equals("")
                     || condicaoTxt.getText().equals("") || precoCompraTxt.getText().equals("")
                     || quantidadeTxt.getText().equals("") || precoUnitarioTxt.getText().equals("")
-                    || dataInsercaoTxt.getText().equals("")){
+                    || dataInsercaoTxt.equals("")){
                 JOptionPane.showMessageDialog(null, "Erro!" + "\n" + "Produto sem campos preenchidos."
                     + "\n" + "Por favor preencha todos os campos.");
             }        
@@ -366,7 +374,7 @@ public class NovoProdutoView extends javax.swing.JFrame {
                 
                 int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja criar este produto?", "Atenção", JOptionPane.YES_NO_OPTION);
                 if(confirm == JOptionPane.YES_OPTION){
-                    try {
+                    try {                        
                         Produto produto = new Produto();
                         ProdutoDAO produtoDAO = new ProdutoDAO();
                         Fornecedor forne = (Fornecedor) cbFornecedor.getSelectedItem();
@@ -381,8 +389,12 @@ public class NovoProdutoView extends javax.swing.JFrame {
                         produto.setPreco_compra(Double.parseDouble(precoCompraTxt.getText()));
                         produto.setQuantidade(Integer.parseInt(quantidadeTxt.getText()));
                         produto.setPreco_unitario(Double.parseDouble(precoUnitarioTxt.getText()));
-                        produto.setData_insercao(dataInsercaoTxt.getText());
-
+                        
+                        Date date = dataInsercaoTxt.getDate();
+                        SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                        String dataString = dateForm.format(date);
+                        produto.setData_insercao(dataString);
+                        
                         if(dimensoesTxt.getText().equals("")){
                             produto.setDimensoes(null);
                         }
@@ -400,7 +412,6 @@ public class NovoProdutoView extends javax.swing.JFrame {
                         precoCompraTxt.setText("");
                         quantidadeTxt.setText("");
                         precoUnitarioTxt.setText("");
-                        dataInsercaoTxt.setText("");
                         cbCategoria.selectWithKeyChar(' ');
                         cbFornecedor.selectWithKeyChar(' ');
 
@@ -423,6 +434,16 @@ public class NovoProdutoView extends javax.swing.JFrame {
             Logger.getLogger(NovoProdutoView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonCancelarActionPerformed
+
+    private void buttonToHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonToHomeActionPerformed
+        try {
+            ProdutosView produtosView = new ProdutosView();
+            produtosView.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(NovoProdutoView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_buttonToHomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -471,7 +492,7 @@ public class NovoProdutoView extends javax.swing.JFrame {
     private javax.swing.JComboBox<Object> cbFornecedor;
     private javax.swing.JTextField codInternoTxt;
     private javax.swing.JTextField condicaoTxt;
-    private javax.swing.JTextField dataInsercaoTxt;
+    private com.toedter.calendar.JDateChooser dataInsercaoTxt;
     private javax.swing.JTextField descricaoTxt;
     private javax.swing.JTextField dimensoesTxt;
     private javax.swing.JTextField especificacoesTxt;

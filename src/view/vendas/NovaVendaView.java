@@ -7,6 +7,12 @@ package view.vendas;
 
 import view.HomeDashboardView;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -36,6 +42,8 @@ public class NovaVendaView extends javax.swing.JFrame {
         this.setIconImage(logo.getImage());
         this.setTitle("Gerenciador de Estoque");
         
+        this.mostrarCalendario();
+        
         MetodoPagamentoDAO metodoPagamentoDAO = new MetodoPagamentoDAO();
         PromoDAO promoDAO = new PromoDAO();
         UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -55,6 +63,12 @@ public class NovaVendaView extends javax.swing.JFrame {
             cbPromo.addItem(p);
         }
         
+    }
+    
+    public void mostrarCalendario(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime now = LocalDateTime.now();  
+        dataTxt.setText(dtf.format(now));
     }
 
     /**
@@ -81,8 +95,8 @@ public class NovaVendaView extends javax.swing.JFrame {
         dataTxt = new javax.swing.JTextField();
         titulo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        buttonCancelar = new javax.swing.JButton();
+        buttonContinuar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -135,6 +149,11 @@ public class NovaVendaView extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Data:");
 
+        dataTxt.setEditable(false);
+        dataTxt.setBackground(new java.awt.Color(200, 200, 200));
+        dataTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        dataTxt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         titulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("INICIAR NOVA VENDA");
@@ -153,13 +172,13 @@ public class NovaVendaView extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(cbMetodoPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(cbVendedor, 0, 250, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(dataTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(cbVendedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(216, 216, 216))
+                    .addComponent(dataTxt))
                 .addGap(70, 70, 70))
         );
         jPanel1Layout.setVerticalGroup(
@@ -195,22 +214,22 @@ public class NovaVendaView extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(180, 205, 255));
 
-        jButton1.setBackground(new java.awt.Color(255, 87, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.png"))); // NOI18N
-        jButton1.setText("CANCELAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonCancelar.setBackground(new java.awt.Color(255, 87, 0));
+        buttonCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        buttonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.png"))); // NOI18N
+        buttonCancelar.setText("CANCELAR");
+        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonCancelarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cart_go.png"))); // NOI18N
-        jButton2.setText("CONTINUAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonContinuar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        buttonContinuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cart_go.png"))); // NOI18N
+        buttonContinuar.setText("CONTINUAR");
+        buttonContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                buttonContinuarActionPerformed(evt);
             }
         });
 
@@ -220,9 +239,9 @@ public class NovaVendaView extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(123, 123, 123)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(125, 125, 125)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -230,8 +249,8 @@ public class NovaVendaView extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -290,7 +309,7 @@ public class NovaVendaView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbPromoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
         try {
             HomeDashboardView homeView = new HomeDashboardView();
             homeView.setVisible(true);
@@ -298,9 +317,9 @@ public class NovaVendaView extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(NovaVendaView.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buttonCancelarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void buttonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonContinuarActionPerformed
         
         if(cbPromo.getSelectedItem().equals(" ") || cbVendedor.getSelectedItem().equals(" ")
                 || cbMetodoPagamento.getSelectedItem().equals(" ") || dataTxt.getText().equals("")){
@@ -319,11 +338,14 @@ public class NovaVendaView extends javax.swing.JFrame {
                     MetodoPagamento mp = (MetodoPagamento) cbMetodoPagamento.getSelectedItem();
                     Usuario vend = (Usuario) cbVendedor.getSelectedItem();
 
-
                     venda.setPromo(promo.getPromo_id());
                     venda.setMetodo_pagamento(mp.getMetodo_pagamento_id());
                     venda.setVendedor(vend.getUsuario_id());
-                    venda.setData(dataTxt.getText());
+                    
+                    Date date = new Date();
+                    SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                    String dataString = dateForm.format(date);
+                    venda.setData(dataString);
 
                     vendaDAO.createVenda(venda);
 
@@ -335,13 +357,15 @@ public class NovaVendaView extends javax.swing.JFrame {
 
                 } catch (SQLException ex) {
                     Logger.getLogger(NovaVendaView.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(NovaVendaView.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
             }
             
             
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_buttonContinuarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -383,13 +407,13 @@ public class NovaVendaView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonCancelar;
+    private javax.swing.JButton buttonContinuar;
     private javax.swing.JButton buttonToHome;
     private javax.swing.JComboBox<Object> cbMetodoPagamento;
     private javax.swing.JComboBox<Object> cbPromo;
     private javax.swing.JComboBox<Object> cbVendedor;
     private javax.swing.JTextField dataTxt;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

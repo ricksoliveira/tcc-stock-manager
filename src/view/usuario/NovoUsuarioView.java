@@ -6,6 +6,8 @@
 package view.usuario;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -66,7 +68,6 @@ public class NovoUsuarioView extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         nomeTxt = new javax.swing.JTextField();
         sobrenomeTxt = new javax.swing.JTextField();
-        dataNascimentoTxt = new javax.swing.JTextField();
         cpfTxt = new javax.swing.JTextField();
         enderecoTxt = new javax.swing.JTextField();
         bairroTxt = new javax.swing.JTextField();
@@ -75,6 +76,7 @@ public class NovoUsuarioView extends javax.swing.JFrame {
         cepTxt = new javax.swing.JTextField();
         emailTxt = new javax.swing.JTextField();
         telefoneTxt = new javax.swing.JTextField();
+        dataNascimentoTxt = new com.toedter.calendar.JDateChooser();
         jPanel4 = new javax.swing.JPanel();
         buttonCancelar = new javax.swing.JButton();
         buttonCadastrar = new javax.swing.JButton();
@@ -172,7 +174,7 @@ public class NovoUsuarioView extends javax.swing.JFrame {
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vcard.png"))); // NOI18N
-        jLabel20.setText("DADOS");
+        jLabel20.setText("DADOS PESSOAIS");
         jLabel20.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
         nomeTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -180,6 +182,8 @@ public class NovoUsuarioView extends javax.swing.JFrame {
                 nomeTxtActionPerformed(evt);
             }
         });
+
+        dataNascimentoTxt.setDateFormatString("dd/MM/yyyy");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -192,19 +196,6 @@ public class NovoUsuarioView extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(sobrenomeTxt)
-                                    .addComponent(nomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel20)
-                                    .addComponent(cpfTxt)
-                                    .addComponent(dataNascimentoTxt)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6)
@@ -214,10 +205,24 @@ public class NovoUsuarioView extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14)
                                     .addComponent(enderecoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bairroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cidadeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cepTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(estadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(estadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(bairroTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(cidadeTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(sobrenomeTxt)
+                                    .addComponent(nomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel20)
+                                    .addComponent(dataNascimentoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cpfTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -239,19 +244,19 @@ public class NovoUsuarioView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sobrenomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dataNascimentoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(dataNascimentoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cpfTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
-                .addGap(66, 66, 66)
+                .addGap(65, 65, 65)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -273,17 +278,17 @@ public class NovoUsuarioView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cepTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(88, 88, 88)
+                .addGap(63, 63, 63)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(telefoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(180, 205, 255));
@@ -400,7 +405,7 @@ public class NovoUsuarioView extends javax.swing.JFrame {
         if(nomeTxt.getText().equals("") || sobrenomeTxt.getText().equals("")
                 || cepTxt.getText().equals("") || cidadeTxt.getText().equals("") || cpfTxt.getText().equals("")
                 || emailTxt.getText().equals("") || enderecoTxt.getText().equals("") || estadoTxt.getText().equals("")
-                || dataNascimentoTxt.getText().equals("")){
+                || dataNascimentoTxt.equals("")){
             JOptionPane.showMessageDialog(null, "Erro!\nPor favor preencha todos os campos.");
         }
         else{
@@ -413,7 +418,12 @@ public class NovoUsuarioView extends javax.swing.JFrame {
 
                     usuario.setNome(nomeTxt.getText());
                     usuario.setSobrenome(sobrenomeTxt.getText());
-                    usuario.setData_nascimento(dataNascimentoTxt.getText());
+                    
+                    Date date = dataNascimentoTxt.getDate();
+                    SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                    String dataString = dateForm.format(date);
+                    usuario.setData_nascimento(dataString);
+                    
                     usuario.setCpf(cpfTxt.getText());
                     usuario.setEmail(emailTxt.getText());
                     usuario.setTelefone(telefoneTxt.getText());
@@ -427,7 +437,7 @@ public class NovoUsuarioView extends javax.swing.JFrame {
 
                     nomeTxt.setText("");
                     sobrenomeTxt.setText("");
-                    dataNascimentoTxt.setText("");
+//                    dataNascimentoTxt.setText("");
                     cpfTxt.setText("");
                     emailTxt.setText("");
                     telefoneTxt.setText("");
@@ -1526,7 +1536,7 @@ public class NovoUsuarioView extends javax.swing.JFrame {
     private javax.swing.JTextField cepTxt;
     private javax.swing.JTextField cidadeTxt;
     private javax.swing.JTextField cpfTxt;
-    private javax.swing.JTextField dataNascimentoTxt;
+    private com.toedter.calendar.JDateChooser dataNascimentoTxt;
     private javax.swing.JTextField emailTxt;
     private javax.swing.JTextField enderecoTxt;
     private javax.swing.JTextField estadoTxt;

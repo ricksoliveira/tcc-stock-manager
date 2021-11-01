@@ -8,6 +8,9 @@ package view.produto;
 import view.HomeDashboardView;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -45,20 +48,30 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.listDeletedProdutos()){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
+            
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            } catch (ParseException ex) {
+                Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     

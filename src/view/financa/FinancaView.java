@@ -91,7 +91,7 @@ public class FinancaView extends javax.swing.JFrame {
             lucroTxt.setBackground(Color.GREEN);
         }
         
-        double margem = margem(lucro, faturamentoLiquido);
+        double margem = margem(lucro, faturamentoBruto);
         margemTxt.setText(String.format("%,.1f", margem) + " %");
         
         if(margem <= 0){

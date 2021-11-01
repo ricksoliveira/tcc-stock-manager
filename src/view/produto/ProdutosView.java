@@ -8,6 +8,9 @@ package view.produto;
 import view.HomeDashboardView;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -45,20 +48,30 @@ public class ProdutosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.listAllProdutos()){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
+            
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            } catch (ParseException ex) {
+                Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
@@ -626,12 +639,13 @@ public class ProdutosView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(codigoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(precoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(precoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(codigoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -641,12 +655,13 @@ public class ProdutosView extends javax.swing.JFrame {
                     .addComponent(descricaoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(quantidadeSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(condicaoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel8)
-                        .addComponent(precoCompraSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(precoCompraSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(condicaoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(19, 19, 19))
         );
 

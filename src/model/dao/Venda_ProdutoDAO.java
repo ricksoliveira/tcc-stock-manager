@@ -457,7 +457,7 @@ public class Venda_ProdutoDAO {
 //</editor-fold>
     }
     
-    public List<VendaCompleta> searchVendaCompletaByData(String data) throws SQLException {
+    public List<VendaCompleta> searchVendaCompletaByData(String data1, String data2) throws SQLException {
         //<editor-fold defaultstate="collapsed" desc="SEARCH VENDA COMPLETA BY DATA">
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
@@ -483,9 +483,10 @@ public class Venda_ProdutoDAO {
                                                 + "ON u.usuario_id = v.vendedor "
                                             + "JOIN promo AS promo "
                                                 + "ON promo.promo_id = v.promo "
-                                        + "WHERE v.data LIKE ? AND v.venda_id > 0 "
+                                        + "WHERE v.data BETWEEN ? AND ? "
                                         + "ORDER BY vp.venda_id, vp.produto_id");
-            stmt.setString(1, "%" + data + "%");
+            stmt.setString(1, data1);
+            stmt.setString(2, data2);
             
             rs = stmt.executeQuery();
             
@@ -559,7 +560,7 @@ public class Venda_ProdutoDAO {
         
         try{
             
-            stmt = con.prepareStatement("SELECT count(distinct quantidade) AS 'distinct_quantidade' "
+            stmt = con.prepareStatement("SELECT count(distinct produto_id) AS 'distinct_quantidade' "
                                         + "FROM venda_produto "
                                         + "WHERE venda_id = ?");
             stmt.setInt(1, id);

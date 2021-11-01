@@ -8,6 +8,9 @@ package view.usuario;
 import view.HomeDashboardView;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -43,22 +46,33 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario p : usuarioDAO.listDeletedUsuarios()){
-            model.addRow(new Object[]{
-                p.getUsuario_id(),
-                p.getNome(),
-                p.getSobrenome(),
-                p.getData_nascimento(),
-                p.getCpf(),
-                p.getEmail(),
-                p.getTelefone(),
-                p.getEndereco(),
-                p.getBairro(),
-                p.getCidade(),
-                p.getEstado(),
-                p.getCep()
-            });
-        }
+            
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getUsuario_id(),
+                    p.getNome(),
+                    p.getSobrenome(),
+                    dateToShow,
+                    p.getCpf(),
+                    p.getEmail(),
+                    p.getTelefone(),
+                    p.getEndereco(),
+                    p.getBairro(),
+                    p.getCidade(),
+                    p.getEstado(),
+                    p.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readDeletedSearchTableByName(String name) throws SQLException{

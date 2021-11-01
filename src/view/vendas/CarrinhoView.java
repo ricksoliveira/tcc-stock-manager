@@ -9,6 +9,9 @@ package view.vendas;
 import controller.ProdutoController;
 import view.HomeDashboardView;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -37,7 +40,7 @@ public class CarrinhoView extends javax.swing.JFrame {
     /** Creates new form NovaVendaView
      * @param venda
      * @throws java.sql.SQLException */
-    public CarrinhoView(Venda venda) throws SQLException {
+    public CarrinhoView(Venda venda) throws SQLException, ParseException {
         initComponents();
         
         ImageIcon logo = new ImageIcon(getClass().getResource("/images/bricks.png"));
@@ -56,7 +59,12 @@ public class CarrinhoView extends javax.swing.JFrame {
         usuarioTxt.setText("  " + usuarioDAO.getName(venda.getVendedor()) + " " + usuarioDAO.getSurname(venda.getVendedor()));
         metodoPagamentoTxt.setText("  " + metodoPagamentoDAO.getName(venda.getMetodo_pagamento()));
         promoTxt.setText("  " + promoDAO.getName(venda.getPromo()));
-        dataTxt.setText("  " + String.valueOf(venda.getData()));
+        
+        SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateFromDb = dateForm.parse(venda.getData());
+        SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+        String dateToShow = dateForm2.format(dateFromDb);
+        dataTxt.setText("  " + dateToShow);
         
     }
     
