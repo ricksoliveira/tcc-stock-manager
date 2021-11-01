@@ -1,4 +1,4 @@
-# TCC Stock Manager aa
+# TCC Stock Manager
 
 > Esta aplicação é um software para a gestão de estoques e banco de dados utilizando as tecnologias `Java` e `MySQL`.
 > 
