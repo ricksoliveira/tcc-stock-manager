@@ -103,7 +103,7 @@ public class ProdutoDAO {
             
             stmt = con.prepareStatement("UPDATE produto "
                                         + "SET fornecedor = ?, categoria = ?, cod_interno = ?, descricao = ?, especificacoes = ?, "
-                                        + "dimensoes = ?, condicao = ?, preco_compra = ?, quantidade = ?, preco_unitario = ?, data_insercao = ?"
+                                        + "dimensoes = ?, condicao = ?, preco_compra = ?, quantidade = ?, preco_unitario = ?"
                                         + "WHERE produto_id = ?");
             stmt.setInt(1, produto.getFornecedor());
             stmt.setInt(2, produto.getCategoria());
@@ -115,8 +115,7 @@ public class ProdutoDAO {
             stmt.setDouble(8, produto.getPreco_compra());
             stmt.setInt(9, produto.getQuantidade());
             stmt.setDouble(10, produto.getPreco_unitario());
-            stmt.setString(11, produto.getData_insercao());
-            stmt.setInt(12, produto.getProduto_id());
+            stmt.setInt(11, produto.getProduto_id());
             
             stmt.executeUpdate();
             
@@ -195,6 +194,90 @@ public class ProdutoDAO {
         
         try{
             stmt = con.prepareStatement("SELECT * FROM produto WHERE produto_id = ? AND status = 'A'");
+            stmt.setInt(1, id);
+            
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Produto produto = new Produto();
+                produto.setProduto_id(rs.getInt("produto_id"));
+                produto.setFornecedor(rs.getInt("fornecedor"));
+                produto.setCategoria(rs.getInt("categoria"));
+                produto.setCod_interno(rs.getString("cod_interno"));
+                produto.setDescricao(rs.getString("descricao"));
+                produto.setEspecificacoes(rs.getString("especificacoes"));
+                produto.setDimensoes(rs.getString("dimensoes"));
+                produto.setQuantidade(rs.getInt("quantidade"));
+                produto.setCondicao(rs.getString("condicao"));
+                produto.setPreco_unitario(rs.getDouble("preco_unitario"));
+                produto.setData_insercao(rs.getString("data_insercao"));
+                produto.setPreco_compra(rs.getDouble("preco_compra"));
+                produtos.add(produto);
+            }
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro ao exibir lista de produtos: " + e);
+        }
+        finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return produtos;
+//</editor-fold>
+    }
+    
+    public List<Produto> searchProdutoByFornecedor(int id) throws SQLException {
+        //<editor-fold defaultstate="collapsed" desc="SEARCH PRODUTO BY FORNECEDOR">
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        List<Produto> produtos = new ArrayList<>();
+        
+        try{
+            stmt = con.prepareStatement("SELECT * FROM produto WHERE fornecedor = ? AND status = 'A'");
+            stmt.setInt(1, id);
+            
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Produto produto = new Produto();
+                produto.setProduto_id(rs.getInt("produto_id"));
+                produto.setFornecedor(rs.getInt("fornecedor"));
+                produto.setCategoria(rs.getInt("categoria"));
+                produto.setCod_interno(rs.getString("cod_interno"));
+                produto.setDescricao(rs.getString("descricao"));
+                produto.setEspecificacoes(rs.getString("especificacoes"));
+                produto.setDimensoes(rs.getString("dimensoes"));
+                produto.setQuantidade(rs.getInt("quantidade"));
+                produto.setCondicao(rs.getString("condicao"));
+                produto.setPreco_unitario(rs.getDouble("preco_unitario"));
+                produto.setData_insercao(rs.getString("data_insercao"));
+                produto.setPreco_compra(rs.getDouble("preco_compra"));
+                produtos.add(produto);
+            }
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro ao exibir lista de produtos: " + e);
+        }
+        finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return produtos;
+//</editor-fold>
+    }
+    
+    public List<Produto> searchProdutoByCategoria(int id) throws SQLException {
+        //<editor-fold defaultstate="collapsed" desc="SEARCH PRODUTO BY CATEGORIA">
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        List<Produto> produtos = new ArrayList<>();
+        
+        try{
+            stmt = con.prepareStatement("SELECT * FROM produto WHERE categoria = ? AND status = 'A'");
             stmt.setInt(1, id);
             
             rs = stmt.executeQuery();
@@ -655,6 +738,90 @@ public class ProdutoDAO {
         
         try{
             stmt = con.prepareStatement("SELECT * FROM produto WHERE produto_id = ? AND status = 'I'");
+            stmt.setInt(1, id);
+            
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Produto produto = new Produto();
+                produto.setProduto_id(rs.getInt("produto_id"));
+                produto.setFornecedor(rs.getInt("fornecedor"));
+                produto.setCategoria(rs.getInt("categoria"));
+                produto.setCod_interno(rs.getString("cod_interno"));
+                produto.setDescricao(rs.getString("descricao"));
+                produto.setEspecificacoes(rs.getString("especificacoes"));
+                produto.setDimensoes(rs.getString("dimensoes"));
+                produto.setQuantidade(rs.getInt("quantidade"));
+                produto.setCondicao(rs.getString("condicao"));
+                produto.setPreco_unitario(rs.getDouble("preco_unitario"));
+                produto.setData_insercao(rs.getString("data_insercao"));
+                produto.setPreco_compra(rs.getDouble("preco_compra"));
+                produtos.add(produto);
+            }
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro ao exibir lista de produtos: " + e);
+        }
+        finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return produtos;
+//</editor-fold>
+    }
+    
+    public List<Produto> searchDeletedProdutoByFornecedor(int id) throws SQLException {
+        //<editor-fold defaultstate="collapsed" desc="SEARCH DELETED PRODUTO BY FORNECEDOR">
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        List<Produto> produtos = new ArrayList<>();
+        
+        try{
+            stmt = con.prepareStatement("SELECT * FROM produto WHERE fornecedor = ? AND status = 'I'");
+            stmt.setInt(1, id);
+            
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Produto produto = new Produto();
+                produto.setProduto_id(rs.getInt("produto_id"));
+                produto.setFornecedor(rs.getInt("fornecedor"));
+                produto.setCategoria(rs.getInt("categoria"));
+                produto.setCod_interno(rs.getString("cod_interno"));
+                produto.setDescricao(rs.getString("descricao"));
+                produto.setEspecificacoes(rs.getString("especificacoes"));
+                produto.setDimensoes(rs.getString("dimensoes"));
+                produto.setQuantidade(rs.getInt("quantidade"));
+                produto.setCondicao(rs.getString("condicao"));
+                produto.setPreco_unitario(rs.getDouble("preco_unitario"));
+                produto.setData_insercao(rs.getString("data_insercao"));
+                produto.setPreco_compra(rs.getDouble("preco_compra"));
+                produtos.add(produto);
+            }
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro ao exibir lista de produtos: " + e);
+        }
+        finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return produtos;
+//</editor-fold>
+    }
+    
+    public List<Produto> searchDeletedProdutoByCategoria(int id) throws SQLException {
+        //<editor-fold defaultstate="collapsed" desc="SEARCH DELETED PRODUTO BY CATEGORIA">
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        List<Produto> produtos = new ArrayList<>();
+        
+        try{
+            stmt = con.prepareStatement("SELECT * FROM produto WHERE categoria = ? AND status = 'I'");
             stmt.setInt(1, id);
             
             rs = stmt.executeQuery();

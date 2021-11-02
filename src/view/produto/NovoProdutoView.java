@@ -369,12 +369,12 @@ public class NovoProdutoView extends javax.swing.JFrame {
                     || dataInsercaoTxt.equals("")){
                 JOptionPane.showMessageDialog(null, "Erro!" + "\n" + "Produto sem campos preenchidos."
                     + "\n" + "Por favor preencha todos os campos.");
-            }        
+            }
             else{
                 
                 int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja criar este produto?", "Atenção", JOptionPane.YES_NO_OPTION);
                 if(confirm == JOptionPane.YES_OPTION){
-                    try {                        
+                    try {
                         Produto produto = new Produto();
                         ProdutoDAO produtoDAO = new ProdutoDAO();
                         Fornecedor forne = (Fornecedor) cbFornecedor.getSelectedItem();

@@ -84,22 +84,109 @@ public class ProdutosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchProdutoById(id)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void readSearchTableByFornecedor(int id) throws SQLException{       
+        //<editor-fold defaultstate="collapsed" desc="READ TABLE BY FORNECEDOR">
+        DefaultTableModel model = (DefaultTableModel) produtoTable.getModel();
+        
+        model.setNumRows(0);
+        
+        ProdutoDAO DAO = new ProdutoDAO();
+        
+        for(Produto p : DAO.searchProdutoByFornecedor(id)){
+            
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
+//</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void readSearchTableByCategoria(int id) throws SQLException{       
+        //<editor-fold defaultstate="collapsed" desc="READ TABLE BY FORNECEDOR">
+        DefaultTableModel model = (DefaultTableModel) produtoTable.getModel();
+        
+        model.setNumRows(0);
+        
+        ProdutoDAO DAO = new ProdutoDAO();
+        
+        for(Produto p : DAO.searchProdutoByCategoria(id)){
+            
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
+//</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByCodigoInterno(String nome) throws SQLException{       
@@ -111,22 +198,32 @@ public class ProdutosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchProdutoByCodigoInterno(nome)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByDescricao(String nome) throws SQLException{       
@@ -138,22 +235,32 @@ public class ProdutosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchProdutoByDescricao(nome)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByEspecificacoes(String nome) throws SQLException{       
@@ -165,22 +272,32 @@ public class ProdutosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchProdutoByEspecificacoes(nome)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByDimensoes(String nome) throws SQLException{       
@@ -192,22 +309,32 @@ public class ProdutosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchProdutoByDimensoes(nome)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByQuantidade(int qtde) throws SQLException{       
@@ -219,22 +346,32 @@ public class ProdutosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchProdutoByQuantidade(qtde)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByCondicao(String nome) throws SQLException{       
@@ -246,22 +383,32 @@ public class ProdutosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchProdutoByCondicao(nome)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByDataInsercao(String nome) throws SQLException{       
@@ -273,22 +420,32 @@ public class ProdutosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchProdutoByDataInsercao(nome)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByPrecoUnitario(double preco) throws SQLException{       
@@ -300,22 +457,32 @@ public class ProdutosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchProdutoByPrecoUnitario(preco)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByPrecoCompra(double preco) throws SQLException{       
@@ -327,22 +494,32 @@ public class ProdutosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchProdutoByPrecoCompra(preco)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     /**
@@ -791,7 +968,6 @@ public class ProdutosView extends javax.swing.JFrame {
             codigoSelecionadoTxt.setText(produtoTable.getValueAt(produtoTable.getSelectedRow(), 3).toString());
             descricaoSelecionadoTxt.setText(produtoTable.getValueAt(produtoTable.getSelectedRow(), 4).toString());
             condicaoSelecionadoTxt.setText(produtoTable.getValueAt(produtoTable.getSelectedRow(), 7).toString());
-            
             quantidadeSelecionadoTxt.setText(produtoTable.getValueAt(produtoTable.getSelectedRow(), 9).toString());
             precoSelecionadoTxt.setText(produtoTable.getValueAt(produtoTable.getSelectedRow(), 10).toString());
             precoCompraSelecionadoTxt.setText(produtoTable.getValueAt(produtoTable.getSelectedRow(), 8).toString());
@@ -803,7 +979,6 @@ public class ProdutosView extends javax.swing.JFrame {
             codigoSelecionadoTxt.setText(produtoTable.getValueAt(produtoTable.getSelectedRow(), 3).toString());
             descricaoSelecionadoTxt.setText(produtoTable.getValueAt(produtoTable.getSelectedRow(), 4).toString());
             condicaoSelecionadoTxt.setText(produtoTable.getValueAt(produtoTable.getSelectedRow(), 7).toString());
-            
             quantidadeSelecionadoTxt.setText(produtoTable.getValueAt(produtoTable.getSelectedRow(), 9).toString());
             precoSelecionadoTxt.setText(produtoTable.getValueAt(produtoTable.getSelectedRow(), 10).toString());
             precoCompraSelecionadoTxt.setText(produtoTable.getValueAt(produtoTable.getSelectedRow(), 8).toString());
@@ -892,6 +1067,38 @@ public class ProdutosView extends javax.swing.JFrame {
                     else{
                         try {
                             this.readSearchTableById(Integer.parseInt(searchFieldTxt.getText()));
+                        } catch (SQLException ex) {
+                            Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+                if(cbAtributos.getSelectedItem().equals("Fornecedor")){
+                    if(searchFieldTxt.getText().equals("")){
+                        try {
+                            this.readTable();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    else{
+                        try {
+                            this.readSearchTableByFornecedor(Integer.parseInt(searchFieldTxt.getText()));
+                        } catch (SQLException ex) {
+                            Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+                if(cbAtributos.getSelectedItem().equals("Categoria")){
+                    if(searchFieldTxt.getText().equals("")){
+                        try {
+                            this.readTable();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    else{
+                        try {
+                            this.readSearchTableByCategoria(Integer.parseInt(searchFieldTxt.getText()));
                         } catch (SQLException ex) {
                             Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -1062,6 +1269,38 @@ public class ProdutosView extends javax.swing.JFrame {
                 else{
                     try {
                         this.readSearchTableById(Integer.parseInt(searchFieldTxt.getText()));
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            if(cbAtributos.getSelectedItem().equals("Fornecedor")){
+                if(searchFieldTxt.getText().equals("")){
+                    try {
+                        this.readTable();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                else{
+                    try {
+                        this.readSearchTableByFornecedor(Integer.parseInt(searchFieldTxt.getText()));
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            if(cbAtributos.getSelectedItem().equals("Categoria")){
+                if(searchFieldTxt.getText().equals("")){
+                    try {
+                        this.readTable();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                else{
+                    try {
+                        this.readSearchTableByCategoria(Integer.parseInt(searchFieldTxt.getText()));
                     } catch (SQLException ex) {
                         Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
                     }

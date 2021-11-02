@@ -84,22 +84,108 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchDeletedProdutoById(id)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void readSearchDeletedTableByFornecedor(int id) throws SQLException{       
+        //<editor-fold defaultstate="collapsed" desc="READ TABLE BY FORNECEDOR">
+        DefaultTableModel model = (DefaultTableModel) produtoExcluidoTable.getModel();
+        
+        model.setNumRows(0);
+        
+        ProdutoDAO DAO = new ProdutoDAO();
+        
+        for(Produto p : DAO.searchDeletedProdutoByFornecedor(id)){
+            
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
+//</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void readSearchDeletedTableByCategoria(int id) throws SQLException{       
+        //<editor-fold defaultstate="collapsed" desc="READ TABLE BY FORNECEDOR">
+        DefaultTableModel model = (DefaultTableModel) produtoExcluidoTable.getModel();
+        
+        model.setNumRows(0);
+        
+        ProdutoDAO DAO = new ProdutoDAO();
+        
+        for(Produto p : DAO.searchDeletedProdutoByCategoria(id)){
+            
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
+//</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchDeletedTableByCodigoInterno(String nome) throws SQLException{       
@@ -111,22 +197,32 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchDeletedProdutoByCodigoInterno(nome)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchDeletedTableByDescricao(String nome) throws SQLException{       
@@ -138,22 +234,32 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchDeletedProdutoByDescricao(nome)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchDeletedTableByEspecificacoes(String nome) throws SQLException{       
@@ -165,22 +271,32 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchDeletedProdutoByEspecificacoes(nome)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchDeletedTableByDimensoes(String nome) throws SQLException{       
@@ -192,22 +308,32 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchDeletedProdutoByDimensoes(nome)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchDeletedTableByQuantidade(int qtde) throws SQLException{       
@@ -219,22 +345,32 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchDeletedProdutoByQuantidade(qtde)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchDeletedTableByCondicao(String nome) throws SQLException{       
@@ -246,22 +382,32 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchDeletedProdutoByCondicao(nome)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchDeletedTableByDataInsercao(String nome) throws SQLException{       
@@ -273,22 +419,32 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchDeletedProdutoByDataInsercao(nome)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchDeletedTableByPrecoUnitario(double preco) throws SQLException{       
@@ -300,22 +456,32 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchDeletedProdutoByPrecoUnitario(preco)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchDeletedTableByPrecoCompra(double preco) throws SQLException{       
@@ -327,22 +493,32 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         ProdutoDAO DAO = new ProdutoDAO();
         
         for(Produto p : DAO.searchDeletedProdutoByPrecoCompra(preco)){
-            model.addRow(new Object[]{
-                p.getProduto_id(),
-                p.getFornecedor(),
-                p.getCategoria(),
-                p.getCod_interno(),
-                p.getDescricao(),
-                p.getEspecificacoes(),
-                p.getDimensoes(),
-                p.getCondicao(),
-                p.getPreco_compra(),
-                p.getQuantidade(),
-                p.getPreco_unitario(),
-                p.getData_insercao()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(p.getData_insercao());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    p.getProduto_id(),
+                    p.getFornecedor(),
+                    p.getCategoria(),
+                    p.getCod_interno(),
+                    p.getDescricao(),
+                    p.getEspecificacoes(),
+                    p.getDimensoes(),
+                    p.getCondicao(),
+                    p.getPreco_compra(),
+                    p.getQuantidade(),
+                    p.getPreco_unitario(),
+                    dateToShow
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     /**
@@ -363,18 +539,20 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         produtoExcluidoTable = new javax.swing.JTable();
         titulo = new javax.swing.JLabel();
+        condicaoSelecionadoTxt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        precoSelecionadoTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        quantidadeSelecionadoTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        codigoSelecionadoTxt = new javax.swing.JLabel();
-        descricaoSelecionadoTxt = new javax.swing.JLabel();
-        condicaoSelecionadoTxt = new javax.swing.JLabel();
-        buttonDeletar = new javax.swing.JButton();
+        precoCompraSelecionadoTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        precoSelecionadoTxt = new javax.swing.JLabel();
-        quantidadeSelecionadoTxt = new javax.swing.JLabel();
+        descricaoSelecionadoTxt = new javax.swing.JTextField();
+        codigoSelecionadoTxt = new javax.swing.JTextField();
+        buttonDeletar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         cbAtributos = new javax.swing.JComboBox<>();
@@ -458,23 +636,92 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("PRODUTOS EXCLUÍDOS");
 
+        condicaoSelecionadoTxt.setEditable(false);
+        condicaoSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        condicaoSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        condicaoSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        condicaoSelecionadoTxt.setFocusable(false);
+        condicaoSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                condicaoSelecionadoTxtActionPerformed(evt);
+            }
+        });
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setText("PRODUTO SELECIONADO");
+
+        precoSelecionadoTxt.setEditable(false);
+        precoSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        precoSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        precoSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        precoSelecionadoTxt.setFocusable(false);
+        precoSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                precoSelecionadoTxtActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel2.setText("Código Interno:");
 
+        quantidadeSelecionadoTxt.setEditable(false);
+        quantidadeSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        quantidadeSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        quantidadeSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        quantidadeSelecionadoTxt.setFocusable(false);
+        quantidadeSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quantidadeSelecionadoTxtActionPerformed(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel4.setText("Descrição:");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel8.setText("Preço de Compra:");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel7.setText("Condição:");
 
-        codigoSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
+        precoCompraSelecionadoTxt.setEditable(false);
+        precoCompraSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        precoCompraSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        precoCompraSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        precoCompraSelecionadoTxt.setFocusable(false);
+        precoCompraSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                precoCompraSelecionadoTxtActionPerformed(evt);
+            }
+        });
 
-        descricaoSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel3.setText("Preço Unitário:");
 
-        condicaoSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel5.setText("Quantidade:");
+
+        descricaoSelecionadoTxt.setEditable(false);
+        descricaoSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        descricaoSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        descricaoSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        descricaoSelecionadoTxt.setFocusable(false);
+        descricaoSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descricaoSelecionadoTxtActionPerformed(evt);
+            }
+        });
+
+        codigoSelecionadoTxt.setEditable(false);
+        codigoSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        codigoSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        codigoSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        codigoSelecionadoTxt.setFocusable(false);
+        codigoSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codigoSelecionadoTxtActionPerformed(evt);
+            }
+        });
 
         buttonDeletar.setBackground(new java.awt.Color(255, 87, 0));
         buttonDeletar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -486,56 +733,48 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel3.setText("Preço Unitário:");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel5.setText("Quantidade:");
-
-        precoSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
-
-        quantidadeSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1277, Short.MAX_VALUE)
             .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(275, 275, 275)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel2)
                     .addComponent(jLabel7))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(codigoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(descricaoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(condicaoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(condicaoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(639, 639, 639))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(descricaoSelecionadoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
-                            .addComponent(codigoSelecionadoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(jLabel5))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
-                                .addComponent(jLabel3)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(quantidadeSelecionadoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(precoSelecionadoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(214, 214, 214)
-                        .addComponent(buttonDeletar)
-                        .addGap(38, 38, 38))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(290, 290, 290)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel3))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel5))))
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(precoCompraSelecionadoTxt)
+                    .addComponent(quantidadeSelecionadoTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(precoSelecionadoTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonDeletar)
+                .addGap(113, 113, 113))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -547,34 +786,30 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(codigoSelecionadoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(precoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(15, 15, 15))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(descricaoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(quantidadeSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(condicaoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addContainerGap(85, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(precoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(codigoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(descricaoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quantidadeSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(precoCompraSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(condicaoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(180, 205, 255));
@@ -632,14 +867,14 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
                     .addComponent(cbAtributos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchFieldTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1277, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -661,7 +896,8 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -692,9 +928,10 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         if(produtoExcluidoTable.getSelectedRow() != -1){
             codigoSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 3).toString());
             descricaoSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 4).toString());
-            quantidadeSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 7).toString());
-            condicaoSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 8).toString());
-            precoSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 9).toString());
+            condicaoSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 7).toString());
+            quantidadeSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 9).toString());
+            precoSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 10).toString());
+            precoCompraSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 8).toString());
         }
     }//GEN-LAST:event_produtoExcluidoTableMouseClicked
 
@@ -702,9 +939,10 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         if(produtoExcluidoTable.getSelectedRow() != -1){
             codigoSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 3).toString());
             descricaoSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 4).toString());
-            quantidadeSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 7).toString());
-            condicaoSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 8).toString());
-            precoSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 9).toString());
+            condicaoSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 7).toString());
+            quantidadeSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 9).toString());
+            precoSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 10).toString());
+            precoCompraSelecionadoTxt.setText(produtoExcluidoTable.getValueAt(produtoExcluidoTable.getSelectedRow(), 8).toString());
         }
     }//GEN-LAST:event_produtoExcluidoTableKeyReleased
 
@@ -756,6 +994,38 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
                     else{
                         try {
                             this.readSearchDeletedTableById(Integer.parseInt(searchFieldTxt.getText()));
+                        } catch (SQLException ex) {
+                            Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+                if(cbAtributos.getSelectedItem().equals("Fornecedor")){
+                    if(searchFieldTxt.getText().equals("")){
+                        try {
+                            this.readDeletedTable();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    else{
+                        try {
+                            this.readSearchDeletedTableByFornecedor(Integer.parseInt(searchFieldTxt.getText()));
+                        } catch (SQLException ex) {
+                            Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+                if(cbAtributos.getSelectedItem().equals("Categoria")){
+                    if(searchFieldTxt.getText().equals("")){
+                        try {
+                            this.readDeletedTable();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    else{
+                        try {
+                            this.readSearchDeletedTableByCategoria(Integer.parseInt(searchFieldTxt.getText()));
                         } catch (SQLException ex) {
                             Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -932,6 +1202,38 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
                     }
                 }
             }
+            if(cbAtributos.getSelectedItem().equals("Fornecedor")){
+                if(searchFieldTxt.getText().equals("")){
+                    try {
+                        this.readDeletedTable();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                else{
+                    try {
+                        this.readSearchDeletedTableByFornecedor(Integer.parseInt(searchFieldTxt.getText()));
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            if(cbAtributos.getSelectedItem().equals("Categoria")){
+                if(searchFieldTxt.getText().equals("")){
+                    try {
+                        this.readDeletedTable();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                else{
+                    try {
+                        this.readSearchDeletedTableByCategoria(Integer.parseInt(searchFieldTxt.getText()));
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ProdutosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
             if(cbAtributos.getSelectedItem().equals("Código Interno")){
                 if(searchFieldTxt.getText().equals("")){
                     try {
@@ -1088,6 +1390,30 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_produtoExcluidoTableKeyPressed
 
+    private void condicaoSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_condicaoSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_condicaoSelecionadoTxtActionPerformed
+
+    private void precoSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_precoSelecionadoTxtActionPerformed
+
+    private void quantidadeSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantidadeSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quantidadeSelecionadoTxtActionPerformed
+
+    private void precoCompraSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoCompraSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_precoCompraSelecionadoTxtActionPerformed
+
+    private void descricaoSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descricaoSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_descricaoSelecionadoTxtActionPerformed
+
+    private void codigoSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codigoSelecionadoTxtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1133,9 +1459,9 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
     private javax.swing.JButton buttonSearch;
     private javax.swing.JButton buttonToHome;
     private javax.swing.JComboBox<Object> cbAtributos;
-    private javax.swing.JLabel codigoSelecionadoTxt;
-    private javax.swing.JLabel condicaoSelecionadoTxt;
-    private javax.swing.JLabel descricaoSelecionadoTxt;
+    private javax.swing.JTextField codigoSelecionadoTxt;
+    private javax.swing.JTextField condicaoSelecionadoTxt;
+    private javax.swing.JTextField descricaoSelecionadoTxt;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -1144,6 +1470,7 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1151,9 +1478,10 @@ public class ProdutosExcluidosView extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JLabel precoSelecionadoTxt;
+    private javax.swing.JTextField precoCompraSelecionadoTxt;
+    private javax.swing.JTextField precoSelecionadoTxt;
     private javax.swing.JTable produtoExcluidoTable;
-    private javax.swing.JLabel quantidadeSelecionadoTxt;
+    private javax.swing.JTextField quantidadeSelecionadoTxt;
     private javax.swing.JTextField searchFieldTxt;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables

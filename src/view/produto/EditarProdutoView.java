@@ -185,6 +185,9 @@ public class EditarProdutoView extends javax.swing.JFrame {
         produtoIdTxt.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         produtoIdTxt.setText(".");
 
+        dataInsercaoTxt.setEditable(false);
+        dataInsercaoTxt.setBackground(new java.awt.Color(200, 200, 200));
+
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Data de Inserção:");
 
@@ -415,7 +418,6 @@ public class EditarProdutoView extends javax.swing.JFrame {
                         produto.setPreco_compra(Double.parseDouble(precoCompraTxt.getText()));
                         produto.setQuantidade(Integer.parseInt(quantidadeTxt.getText()));
                         produto.setPreco_unitario(Double.parseDouble(precoUnitarioTxt.getText()));
-                        produto.setData_insercao(dataInsercaoTxt.getText());
 
                         if(dimensoesTxt.getText().equals("")){
                             produto.setDimensoes(null);
