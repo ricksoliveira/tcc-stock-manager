@@ -1570,4 +1570,33 @@ public class ProdutoDAO {
 //</editor-fold>
     }
     
+    public int getQuantidadeDeUmProduto(int id) throws SQLException{
+        //<editor-fold defaultstate="collapsed" desc="GET TOTAL QUANTIDADE DE UM PRODUTO ESPECÍFICO">
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        int quantidade = 0;
+        
+        try{
+            stmt = con.prepareStatement("SELECT quantidade FROM produto WHERE produto_id = ? AND status = 'A'");
+            stmt.setInt(1, id);
+            
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                quantidade = rs.getInt("quantidade");
+            }
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro ao exibir lista de produtos: " + e);
+        }
+        finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return quantidade;
+//</editor-fold>
+    }
+    
 }

@@ -579,10 +579,21 @@ public class CarrinhoView extends javax.swing.JFrame {
                 }
                 else{
                     Produto produto = produtoDAO.getProdutoByCodigoInterno(codigoTxt.getText());
-                    this.readCarrinhoTable(produto);
-                    codigoTxt.setText("");
-                    qtdeNum.setValue(0);
-                    this.calculoTotal();
+                    
+                    int qntdeTabela = 0;
+                    for(int i = 0; i < carrinhoTable.getRowCount(); i++){
+                        qntdeTabela += (int) carrinhoTable.getValueAt(i, 4);
+                    }
+                    
+                    if (qntdeTabela + (int) qtdeNum.getValue() > produtoDAO.getQuantidadeDeUmProduto(produto.getProduto_id())){
+                        JOptionPane.showMessageDialog(null, "Erro!" + "\n" + "Não há quantidade em estoque o suficiente.");
+                    }
+                    else{
+                        this.readCarrinhoTable(produto);
+                        codigoTxt.setText("");
+                        qtdeNum.setValue(0);
+                        this.calculoTotal();
+                    }
                 }
             }
             else{
