@@ -6,6 +6,12 @@
 package view.usuario;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -22,7 +28,7 @@ public class EditarUsuarioView extends javax.swing.JFrame {
     /**
      * Creates new form TestDBView
      */
-    public EditarUsuarioView(Usuario usuario) throws SQLException {
+    public EditarUsuarioView(Usuario usuario) throws SQLException, ParseException {
        
         initComponents();
         
@@ -33,7 +39,11 @@ public class EditarUsuarioView extends javax.swing.JFrame {
         usuarioIdTxt.setText(String.valueOf(usuario.getUsuario_id()));
         nomeTxt.setText(usuario.getNome());
         sobrenomeTxt.setText(usuario.getSobrenome());
-        dataNascimentoTxt.setText(usuario.getData_nascimento());
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = formatter.parse(usuario.getData_nascimento());
+        dataNascimentoTxt.setDate(date);
+        
         cpfTxt.setText(usuario.getCpf());
         emailTxt.setText(usuario.getEmail());
         telefoneTxt.setText(usuario.getTelefone());
@@ -84,7 +94,6 @@ public class EditarUsuarioView extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         nomeTxt = new javax.swing.JTextField();
         sobrenomeTxt = new javax.swing.JTextField();
-        dataNascimentoTxt = new javax.swing.JTextField();
         cpfTxt = new javax.swing.JTextField();
         enderecoTxt = new javax.swing.JTextField();
         bairroTxt = new javax.swing.JTextField();
@@ -93,6 +102,7 @@ public class EditarUsuarioView extends javax.swing.JFrame {
         cepTxt = new javax.swing.JTextField();
         emailTxt = new javax.swing.JTextField();
         telefoneTxt = new javax.swing.JTextField();
+        dataNascimentoTxt = new com.toedter.calendar.JDateChooser();
         jPanel4 = new javax.swing.JPanel();
         buttonCancelar = new javax.swing.JButton();
         buttonCadastrar = new javax.swing.JButton();
@@ -200,6 +210,8 @@ public class EditarUsuarioView extends javax.swing.JFrame {
             }
         });
 
+        dataNascimentoTxt.setDateFormatString("dd/MM/yyyy");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -220,8 +232,8 @@ public class EditarUsuarioView extends javax.swing.JFrame {
                                     .addComponent(sobrenomeTxt)
                                     .addComponent(nomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel20)
-                                    .addComponent(cpfTxt)
-                                    .addComponent(dataNascimentoTxt)))
+                                    .addComponent(dataNascimentoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cpfTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4)
@@ -258,19 +270,19 @@ public class EditarUsuarioView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sobrenomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dataNascimentoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dataNascimentoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cpfTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
-                .addGap(66, 66, 66)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -427,7 +439,7 @@ public class EditarUsuarioView extends javax.swing.JFrame {
         if(nomeTxt.getText().equals("") || sobrenomeTxt.getText().equals("")
                 || cepTxt.getText().equals("") || cidadeTxt.getText().equals("") || cpfTxt.getText().equals("")
                 || emailTxt.getText().equals("") || enderecoTxt.getText().equals("") || estadoTxt.getText().equals("")
-                || dataNascimentoTxt.getText().equals("")){
+                || dataNascimentoTxt.equals("")){
             JOptionPane.showMessageDialog(null, "Erro!\nPor favor preencha todos os campos.");
         }
         else{
@@ -441,7 +453,13 @@ public class EditarUsuarioView extends javax.swing.JFrame {
                     usuario.setUsuario_id(Integer.parseInt(usuarioIdTxt.getText()));
                     usuario.setNome(nomeTxt.getText());
                     usuario.setSobrenome(sobrenomeTxt.getText());
-                    usuario.setData_nascimento(dataNascimentoTxt.getText());
+                    
+                    
+                    Date date = dataNascimentoTxt.getDate();
+                    SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                    String dataString = dateForm.format(date);
+                    usuario.setData_nascimento(dataString);
+                    
                     usuario.setCpf(cpfTxt.getText());
                     usuario.setEmail(emailTxt.getText());
                     usuario.setTelefone(telefoneTxt.getText());
@@ -455,7 +473,6 @@ public class EditarUsuarioView extends javax.swing.JFrame {
 
                     nomeTxt.setText("");
                     sobrenomeTxt.setText("");
-                    dataNascimentoTxt.setText("");
                     cpfTxt.setText("");
                     emailTxt.setText("");
                     telefoneTxt.setText("");
@@ -2573,7 +2590,7 @@ public class EditarUsuarioView extends javax.swing.JFrame {
     private javax.swing.JTextField cepTxt;
     private javax.swing.JTextField cidadeTxt;
     private javax.swing.JTextField cpfTxt;
-    private javax.swing.JTextField dataNascimentoTxt;
+    private com.toedter.calendar.JDateChooser dataNascimentoTxt;
     private javax.swing.JTextField emailTxt;
     private javax.swing.JTextField enderecoTxt;
     private javax.swing.JTextField estadoTxt;

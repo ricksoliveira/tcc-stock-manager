@@ -173,8 +173,8 @@
                                           <Component id="sobrenomeTxt" alignment="0" max="32767" attributes="0"/>
                                           <Component id="nomeTxt" alignment="0" min="-2" pref="700" max="-2" attributes="0"/>
                                           <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cpfTxt" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="dataNascimentoTxt" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="dataNascimentoTxt" min="-2" pref="150" max="-2" attributes="0"/>
+                                          <Component id="cpfTxt" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
@@ -225,22 +225,22 @@
                           <Component id="nomeTxt" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="sobrenomeTxt" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="dataNascimentoTxt" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="dataNascimentoTxt" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="jLabel11" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="cpfTxt" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -417,8 +417,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="sobrenomeTxt">
             </Component>
-            <Component class="javax.swing.JTextField" name="dataNascimentoTxt">
-            </Component>
             <Component class="javax.swing.JTextField" name="cpfTxt">
             </Component>
             <Component class="javax.swing.JTextField" name="enderecoTxt">
@@ -434,6 +432,11 @@
             <Component class="javax.swing.JTextField" name="emailTxt">
             </Component>
             <Component class="javax.swing.JTextField" name="telefoneTxt">
+            </Component>
+            <Component class="com.toedter.calendar.JDateChooser" name="dataNascimentoTxt">
+              <Properties>
+                <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

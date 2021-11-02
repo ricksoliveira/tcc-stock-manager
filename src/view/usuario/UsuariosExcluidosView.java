@@ -40,9 +40,11 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
     }
     
     public void readDeletedTable() throws SQLException{
-        //<editor-fold defaultstate="collapsed" desc="READ DELETED TABLE">
+        //<editor-fold defaultstate="collapsed" desc="READ DELETED USUARIOS">
         DefaultTableModel model = (DefaultTableModel) usuarioExcluidoTable.getModel();
+        
         model.setNumRows(0);
+        
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario p : usuarioDAO.listDeletedUsuarios()){
@@ -70,7 +72,7 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
             }
 //</editor-fold>
             catch (ParseException ex) {
-                Logger.getLogger(UsuariosExcluidosView.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -82,22 +84,32 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchDeletedUsuarioByName(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readDeletedSearchTableById(int id) throws SQLException{
@@ -107,22 +119,32 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchDeletedUsuarioById(id)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readDeletedSearchTableBySurname(String name) throws SQLException{
@@ -132,22 +154,32 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchDeletedUsuarioBySurname(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readDeletedSearchTableByBirthday(String name) throws SQLException{
@@ -157,22 +189,32 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchDeletedUsuarioByBirthday(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readDeletedSearchTableByCpf(String name) throws SQLException{
@@ -182,22 +224,32 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchDeletedUsuarioByCpf(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readDeletedSearchTableByEmail(String name) throws SQLException{
@@ -207,22 +259,32 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchDeletedUsuarioByEmail(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readDeletedSearchTableByTelefone(String name) throws SQLException{
@@ -232,22 +294,32 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchDeletedUsuarioByTelefone(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readDeletedSearchTableByEndereco(String name) throws SQLException{
@@ -257,22 +329,32 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchDeletedUsuarioByEndereco(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readDeletedSearchTableByBairro(String name) throws SQLException{
@@ -282,47 +364,67 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchDeletedUsuarioByBairro(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readDeletedSearchTableByCidade(String name) throws SQLException{
-        //<editor-fold defaultstate="collapsed" desc="READ DELETED BY CIDADE">
+        //<editor-fold defaultstate="collapsed" desc="READ DELETEDBY CIDADE">
         DefaultTableModel model = (DefaultTableModel) usuarioExcluidoTable.getModel();
         model.setNumRows(0);
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchDeletedUsuarioByCidade(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readDeletedSearchTableByEstado(String name) throws SQLException{
@@ -332,22 +434,32 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchDeletedUsuarioByEstado(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readDeletedSearchTableByCep(String name) throws SQLException{
@@ -357,22 +469,32 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchDeletedUsuarioByCep(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     /**
@@ -397,13 +519,21 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JToolBar.Separator();
         jButton1 = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
+        jLabel9 = new javax.swing.JLabel();
+        sobrenomeSelecionadoTxt = new javax.swing.JTextField();
+        cidadeSelecionadoTxt = new javax.swing.JTextField();
+        nomeSelecionadoTxt = new javax.swing.JTextField();
+        enderecoSelecionadoTxt = new javax.swing.JTextField();
+        telefoneSelecionadoTxt = new javax.swing.JTextField();
+        estadoSelecionadoTxt = new javax.swing.JTextField();
+        emailSelecionadoTxt = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        nomeSelecionadoTxt = new javax.swing.JLabel();
-        sobrenomeSelecionadoTxt = new javax.swing.JLabel();
-        emailSelecionadoTxt = new javax.swing.JLabel();
         buttonDeletar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -506,8 +636,97 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
         jToolBar1.add(jButton1);
         jToolBar1.add(jSeparator4);
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel9.setText("Estado:");
+
+        sobrenomeSelecionadoTxt.setEditable(false);
+        sobrenomeSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        sobrenomeSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        sobrenomeSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        sobrenomeSelecionadoTxt.setFocusable(false);
+        sobrenomeSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sobrenomeSelecionadoTxtActionPerformed(evt);
+            }
+        });
+
+        cidadeSelecionadoTxt.setEditable(false);
+        cidadeSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        cidadeSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cidadeSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        cidadeSelecionadoTxt.setFocusable(false);
+        cidadeSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cidadeSelecionadoTxtActionPerformed(evt);
+            }
+        });
+
+        nomeSelecionadoTxt.setEditable(false);
+        nomeSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        nomeSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nomeSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        nomeSelecionadoTxt.setFocusable(false);
+        nomeSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeSelecionadoTxtActionPerformed(evt);
+            }
+        });
+
+        enderecoSelecionadoTxt.setEditable(false);
+        enderecoSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        enderecoSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        enderecoSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        enderecoSelecionadoTxt.setFocusable(false);
+        enderecoSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enderecoSelecionadoTxtActionPerformed(evt);
+            }
+        });
+
+        telefoneSelecionadoTxt.setEditable(false);
+        telefoneSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        telefoneSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        telefoneSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        telefoneSelecionadoTxt.setFocusable(false);
+        telefoneSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefoneSelecionadoTxtActionPerformed(evt);
+            }
+        });
+
+        estadoSelecionadoTxt.setEditable(false);
+        estadoSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        estadoSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        estadoSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        estadoSelecionadoTxt.setFocusable(false);
+        estadoSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estadoSelecionadoTxtActionPerformed(evt);
+            }
+        });
+
+        emailSelecionadoTxt.setEditable(false);
+        emailSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        emailSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        emailSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        emailSelecionadoTxt.setFocusable(false);
+        emailSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailSelecionadoTxtActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel8.setText("Telefone:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel3.setText("Endereço:");
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setText("USUÁRIO SELECIONADO");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel6.setText("Cidade:");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel2.setText("Nome:");
@@ -517,12 +736,6 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel7.setText("Email:");
-
-        nomeSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
-
-        sobrenomeSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
-
-        emailSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
 
         buttonDeletar.setBackground(new java.awt.Color(255, 87, 0));
         buttonDeletar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -541,25 +754,39 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
             .addComponent(titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1398, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(telefoneSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(220, 220, 220))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonDeletar)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(nomeSelecionadoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(sobrenomeSelecionadoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(emailSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(372, 372, 372))
+                                .addComponent(nomeSelecionadoTxt)
+                                .addComponent(sobrenomeSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(emailSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(55, 55, 55)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(enderecoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cidadeSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(estadoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonDeletar)
+                .addGap(176, 176, 176))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(363, 363, 363)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -569,23 +796,44 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
                 .addComponent(titulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nomeSelecionadoTxt))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(sobrenomeSelecionadoTxt))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(emailSelecionadoTxt))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(buttonDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(buttonDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(100, 100, 100))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(nomeSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(sobrenomeSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(emailSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(enderecoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(cidadeSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(estadoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(telefoneSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19))))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -635,7 +883,7 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(368, 368, 368)
+                .addGap(349, 349, 349)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbAtributos, 0, 116, Short.MAX_VALUE)
@@ -643,18 +891,18 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
                 .addComponent(searchFieldTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonSearch)
-                .addGap(348, 348, 348))
+                .addGap(367, 367, 367))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(searchFieldTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbAtributos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -685,6 +933,10 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
             nomeSelecionadoTxt.setText(usuarioExcluidoTable.getValueAt(usuarioExcluidoTable.getSelectedRow(), 1).toString());
             sobrenomeSelecionadoTxt.setText(usuarioExcluidoTable.getValueAt(usuarioExcluidoTable.getSelectedRow(), 2).toString());
             emailSelecionadoTxt.setText(usuarioExcluidoTable.getValueAt(usuarioExcluidoTable.getSelectedRow(), 5).toString());
+            telefoneSelecionadoTxt.setText(usuarioExcluidoTable.getValueAt(usuarioExcluidoTable.getSelectedRow(), 6).toString());
+            enderecoSelecionadoTxt.setText(usuarioExcluidoTable.getValueAt(usuarioExcluidoTable.getSelectedRow(), 7).toString());
+            cidadeSelecionadoTxt.setText(usuarioExcluidoTable.getValueAt(usuarioExcluidoTable.getSelectedRow(), 9).toString());
+            estadoSelecionadoTxt.setText(usuarioExcluidoTable.getValueAt(usuarioExcluidoTable.getSelectedRow(), 10).toString());
         }
     }//GEN-LAST:event_usuarioExcluidoTableKeyReleased
 
@@ -693,6 +945,10 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
             nomeSelecionadoTxt.setText(usuarioExcluidoTable.getValueAt(usuarioExcluidoTable.getSelectedRow(), 1).toString());
             sobrenomeSelecionadoTxt.setText(usuarioExcluidoTable.getValueAt(usuarioExcluidoTable.getSelectedRow(), 2).toString());
             emailSelecionadoTxt.setText(usuarioExcluidoTable.getValueAt(usuarioExcluidoTable.getSelectedRow(), 5).toString());
+            telefoneSelecionadoTxt.setText(usuarioExcluidoTable.getValueAt(usuarioExcluidoTable.getSelectedRow(), 6).toString());
+            enderecoSelecionadoTxt.setText(usuarioExcluidoTable.getValueAt(usuarioExcluidoTable.getSelectedRow(), 7).toString());
+            cidadeSelecionadoTxt.setText(usuarioExcluidoTable.getValueAt(usuarioExcluidoTable.getSelectedRow(), 9).toString());
+            estadoSelecionadoTxt.setText(usuarioExcluidoTable.getValueAt(usuarioExcluidoTable.getSelectedRow(), 10).toString());
         }
     }//GEN-LAST:event_usuarioExcluidoTableMouseClicked
 
@@ -1179,6 +1435,34 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_buttonSearchKeyPressed
 
+    private void sobrenomeSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobrenomeSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sobrenomeSelecionadoTxtActionPerformed
+
+    private void cidadeSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidadeSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cidadeSelecionadoTxtActionPerformed
+
+    private void nomeSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeSelecionadoTxtActionPerformed
+
+    private void enderecoSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enderecoSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enderecoSelecionadoTxtActionPerformed
+
+    private void telefoneSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefoneSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telefoneSelecionadoTxtActionPerformed
+
+    private void estadoSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estadoSelecionadoTxtActionPerformed
+
+    private void emailSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailSelecionadoTxtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1478,13 +1762,20 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
     private javax.swing.JButton buttonSearch;
     private javax.swing.JButton buttonToHome;
     private javax.swing.JComboBox<Object> cbAtributos;
-    private javax.swing.JLabel emailSelecionadoTxt;
+    private javax.swing.JTextField cidadeSelecionadoTxt;
+    private javax.swing.JTextField emailSelecionadoTxt;
+    private javax.swing.JTextField enderecoSelecionadoTxt;
+    private javax.swing.JTextField estadoSelecionadoTxt;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1496,9 +1787,10 @@ public class UsuariosExcluidosView extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JTable jTable1;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JLabel nomeSelecionadoTxt;
+    private javax.swing.JTextField nomeSelecionadoTxt;
     private javax.swing.JTextField searchFieldTxt;
-    private javax.swing.JLabel sobrenomeSelecionadoTxt;
+    private javax.swing.JTextField sobrenomeSelecionadoTxt;
+    private javax.swing.JTextField telefoneSelecionadoTxt;
     private javax.swing.JLabel titulo;
     private javax.swing.JTable usuarioExcluidoTable;
     // End of variables declaration//GEN-END:variables

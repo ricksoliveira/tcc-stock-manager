@@ -67,7 +67,7 @@ public class NovaVendaView extends javax.swing.JFrame {
     
     public void mostrarCalendario(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDateTime now = LocalDateTime.now();  
+        LocalDateTime now = LocalDateTime.now();
         dataTxt.setText(dtf.format(now));
     }
 

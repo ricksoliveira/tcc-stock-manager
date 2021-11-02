@@ -15,6 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.bean.Produto;
 import model.dao.ProdutoDAO;
@@ -626,6 +628,7 @@ public class ProdutosView extends javax.swing.JFrame {
         });
         produtoTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         produtoTable.setShowGrid(false);
+        produtoTable.setShowVerticalLines(false);
         produtoTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 produtoTableMouseClicked(evt);

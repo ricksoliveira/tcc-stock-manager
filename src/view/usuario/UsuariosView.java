@@ -39,7 +39,7 @@ public class UsuariosView extends javax.swing.JFrame {
         this.readTable();
     }
     
-    public void readTable() throws SQLException{ 
+    public void readTable() throws SQLException{
         //<editor-fold defaultstate="collapsed" desc="READ USUARIOS">
         DefaultTableModel model = (DefaultTableModel) usuarioTable.getModel();
         
@@ -84,22 +84,32 @@ public class UsuariosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchUsuarioByName(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableById(int id) throws SQLException{
@@ -109,22 +119,32 @@ public class UsuariosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchUsuarioById(id)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableBySurname(String name) throws SQLException{
@@ -134,22 +154,32 @@ public class UsuariosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchUsuarioBySurname(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByBirthday(String name) throws SQLException{
@@ -159,22 +189,32 @@ public class UsuariosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchUsuarioByBirthday(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByCpf(String name) throws SQLException{
@@ -184,22 +224,32 @@ public class UsuariosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchUsuarioByCpf(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByEmail(String name) throws SQLException{
@@ -209,22 +259,32 @@ public class UsuariosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchUsuarioByEmail(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByTelefone(String name) throws SQLException{
@@ -234,22 +294,32 @@ public class UsuariosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchUsuarioByTelefone(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByEndereco(String name) throws SQLException{
@@ -259,22 +329,32 @@ public class UsuariosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchUsuarioByEndereco(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByBairro(String name) throws SQLException{
@@ -284,22 +364,32 @@ public class UsuariosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchUsuarioByBairro(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByCidade(String name) throws SQLException{
@@ -309,22 +399,32 @@ public class UsuariosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchUsuarioByCidade(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByEstado(String name) throws SQLException{
@@ -334,22 +434,32 @@ public class UsuariosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchUsuarioByEstado(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void readSearchTableByCep(String name) throws SQLException{
@@ -359,22 +469,32 @@ public class UsuariosView extends javax.swing.JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         for(Usuario c : usuarioDAO.searchUsuarioByCep(name)){
-            model.addRow(new Object[]{
-                c.getUsuario_id(),
-                c.getNome(),
-                c.getSobrenome(),
-                c.getData_nascimento(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getEndereco(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getEstado(),
-                c.getCep()
-            });
-        }
+            try {
+                SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFromDb = dateForm.parse(c.getData_nascimento());
+                SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+                String dateToShow = dateForm2.format(dateFromDb);
+                
+                model.addRow(new Object[]{
+                    c.getUsuario_id(),
+                    c.getNome(),
+                    c.getSobrenome(),
+                    dateToShow,
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getEndereco(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getEstado(),
+                    c.getCep()
+                });
+            }
 //</editor-fold>
+            catch (ParseException ex) {
+                Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     /**
@@ -404,9 +524,17 @@ public class UsuariosView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        nomeSelecionadoTxt = new javax.swing.JLabel();
-        sobrenomeSelecionadoTxt = new javax.swing.JLabel();
-        emailSelecionadoTxt = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        nomeSelecionadoTxt = new javax.swing.JTextField();
+        sobrenomeSelecionadoTxt = new javax.swing.JTextField();
+        emailSelecionadoTxt = new javax.swing.JTextField();
+        telefoneSelecionadoTxt = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        cidadeSelecionadoTxt = new javax.swing.JTextField();
+        enderecoSelecionadoTxt = new javax.swing.JTextField();
+        estadoSelecionadoTxt = new javax.swing.JTextField();
         buttonEditar = new javax.swing.JButton();
         buttonDeletar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -534,11 +662,94 @@ public class UsuariosView extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel7.setText("Email:");
 
-        nomeSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel8.setText("Telefone:");
 
-        sobrenomeSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
+        nomeSelecionadoTxt.setEditable(false);
+        nomeSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        nomeSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nomeSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        nomeSelecionadoTxt.setFocusable(false);
+        nomeSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeSelecionadoTxtActionPerformed(evt);
+            }
+        });
 
-        emailSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
+        sobrenomeSelecionadoTxt.setEditable(false);
+        sobrenomeSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        sobrenomeSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        sobrenomeSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        sobrenomeSelecionadoTxt.setFocusable(false);
+        sobrenomeSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sobrenomeSelecionadoTxtActionPerformed(evt);
+            }
+        });
+
+        emailSelecionadoTxt.setEditable(false);
+        emailSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        emailSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        emailSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        emailSelecionadoTxt.setFocusable(false);
+        emailSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailSelecionadoTxtActionPerformed(evt);
+            }
+        });
+
+        telefoneSelecionadoTxt.setEditable(false);
+        telefoneSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        telefoneSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        telefoneSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        telefoneSelecionadoTxt.setFocusable(false);
+        telefoneSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefoneSelecionadoTxtActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel3.setText("Endereço:");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel6.setText("Cidade:");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel9.setText("Estado:");
+
+        cidadeSelecionadoTxt.setEditable(false);
+        cidadeSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        cidadeSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cidadeSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        cidadeSelecionadoTxt.setFocusable(false);
+        cidadeSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cidadeSelecionadoTxtActionPerformed(evt);
+            }
+        });
+
+        enderecoSelecionadoTxt.setEditable(false);
+        enderecoSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        enderecoSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        enderecoSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        enderecoSelecionadoTxt.setFocusable(false);
+        enderecoSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enderecoSelecionadoTxtActionPerformed(evt);
+            }
+        });
+
+        estadoSelecionadoTxt.setEditable(false);
+        estadoSelecionadoTxt.setBackground(new java.awt.Color(202, 202, 211));
+        estadoSelecionadoTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        estadoSelecionadoTxt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        estadoSelecionadoTxt.setFocusable(false);
+        estadoSelecionadoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estadoSelecionadoTxtActionPerformed(evt);
+            }
+        });
 
         buttonEditar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_edit.png"))); // NOI18N
@@ -566,28 +777,47 @@ public class UsuariosView extends javax.swing.JFrame {
             .addComponent(titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1398, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(jLabel1)
-                        .addGap(220, 220, 220))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(nomeSelecionadoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(sobrenomeSelecionadoTxt))
+                            .addComponent(emailSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(enderecoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(455, 455, 455))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cidadeSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(estadoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(103, 103, 103)
-                                .addComponent(buttonDeletar))
-                            .addComponent(nomeSelecionadoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sobrenomeSelecionadoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(emailSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(371, 371, 371))
+                                .addGap(88, 88, 88)
+                                .addComponent(buttonDeletar)
+                                .addGap(56, 56, 56))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(telefoneSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(260, 260, 260))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(369, 369, 369)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -599,34 +829,55 @@ public class UsuariosView extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(nomeSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(sobrenomeSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(emailSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(enderecoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(cidadeSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(estadoSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttonDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nomeSelecionadoTxt))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(sobrenomeSelecionadoTxt))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(emailSelecionadoTxt))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(jLabel8)
+                    .addComponent(telefoneSelecionadoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1388, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 68, Short.MAX_VALUE)
+            .addGap(0, 46, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(180, 205, 255));
@@ -665,7 +916,7 @@ public class UsuariosView extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(362, 362, 362)
+                .addGap(371, 371, 371)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbAtributos, 0, 116, Short.MAX_VALUE)
@@ -673,18 +924,18 @@ public class UsuariosView extends javax.swing.JFrame {
                 .addComponent(searchFieldTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonSearch)
-                .addGap(354, 354, 354))
+                .addGap(345, 345, 345))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(searchFieldTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbAtributos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -704,7 +955,8 @@ public class UsuariosView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1))
         );
 
         pack();
@@ -716,6 +968,10 @@ public class UsuariosView extends javax.swing.JFrame {
             nomeSelecionadoTxt.setText(usuarioTable.getValueAt(usuarioTable.getSelectedRow(), 1).toString());
             sobrenomeSelecionadoTxt.setText(usuarioTable.getValueAt(usuarioTable.getSelectedRow(), 2).toString());
             emailSelecionadoTxt.setText(usuarioTable.getValueAt(usuarioTable.getSelectedRow(), 5).toString());
+            telefoneSelecionadoTxt.setText(usuarioTable.getValueAt(usuarioTable.getSelectedRow(), 6).toString());
+            enderecoSelecionadoTxt.setText(usuarioTable.getValueAt(usuarioTable.getSelectedRow(), 7).toString());
+            cidadeSelecionadoTxt.setText(usuarioTable.getValueAt(usuarioTable.getSelectedRow(), 9).toString());
+            estadoSelecionadoTxt.setText(usuarioTable.getValueAt(usuarioTable.getSelectedRow(), 10).toString());
         }
     }//GEN-LAST:event_usuarioTableKeyReleased
 
@@ -724,6 +980,10 @@ public class UsuariosView extends javax.swing.JFrame {
             nomeSelecionadoTxt.setText(usuarioTable.getValueAt(usuarioTable.getSelectedRow(), 1).toString());
             sobrenomeSelecionadoTxt.setText(usuarioTable.getValueAt(usuarioTable.getSelectedRow(), 2).toString());
             emailSelecionadoTxt.setText(usuarioTable.getValueAt(usuarioTable.getSelectedRow(), 5).toString());
+            telefoneSelecionadoTxt.setText(usuarioTable.getValueAt(usuarioTable.getSelectedRow(), 6).toString());
+            enderecoSelecionadoTxt.setText(usuarioTable.getValueAt(usuarioTable.getSelectedRow(), 7).toString());
+            cidadeSelecionadoTxt.setText(usuarioTable.getValueAt(usuarioTable.getSelectedRow(), 9).toString());
+            estadoSelecionadoTxt.setText(usuarioTable.getValueAt(usuarioTable.getSelectedRow(), 10).toString());
         }
     }//GEN-LAST:event_usuarioTableMouseClicked
 
@@ -799,6 +1059,8 @@ public class UsuariosView extends javax.swing.JFrame {
             
             this.dispose();
         } catch (SQLException ex) {
+            Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(UsuariosView.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -1247,6 +1509,34 @@ public class UsuariosView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_buttonSearchKeyPressed
 
+    private void sobrenomeSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobrenomeSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sobrenomeSelecionadoTxtActionPerformed
+
+    private void nomeSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeSelecionadoTxtActionPerformed
+
+    private void telefoneSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefoneSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telefoneSelecionadoTxtActionPerformed
+
+    private void emailSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailSelecionadoTxtActionPerformed
+
+    private void cidadeSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidadeSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cidadeSelecionadoTxtActionPerformed
+
+    private void enderecoSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enderecoSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enderecoSelecionadoTxtActionPerformed
+
+    private void estadoSelecionadoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoSelecionadoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estadoSelecionadoTxtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1420,13 +1710,20 @@ public class UsuariosView extends javax.swing.JFrame {
     private javax.swing.JButton buttonToHome;
     private javax.swing.JButton buttonToUsuariosExcluidos;
     private javax.swing.JComboBox<Object> cbAtributos;
-    private javax.swing.JLabel emailSelecionadoTxt;
+    private javax.swing.JTextField cidadeSelecionadoTxt;
+    private javax.swing.JTextField emailSelecionadoTxt;
+    private javax.swing.JTextField enderecoSelecionadoTxt;
+    private javax.swing.JTextField estadoSelecionadoTxt;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1438,9 +1735,10 @@ public class UsuariosView extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JTable jTable1;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JLabel nomeSelecionadoTxt;
+    private javax.swing.JTextField nomeSelecionadoTxt;
     private javax.swing.JTextField searchFieldTxt;
-    private javax.swing.JLabel sobrenomeSelecionadoTxt;
+    private javax.swing.JTextField sobrenomeSelecionadoTxt;
+    private javax.swing.JTextField telefoneSelecionadoTxt;
     private javax.swing.JLabel titulo;
     private javax.swing.JTable usuarioTable;
     // End of variables declaration//GEN-END:variables
