@@ -6,7 +6,10 @@ import connection.ConnectionFactory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -667,7 +670,7 @@ public class Venda_ProdutoDAO {
 //</editor-fold>
     }
     
-    public JasperPrint getReportByInterval(String data1, String data2) throws SQLException, JRException{
+    public JasperPrint getReportByInterval(String data1, String data2) throws SQLException, JRException, ParseException{
         //<editor-fold defaultstate="collapsed" desc="GET REPORT DE UM INTERVALO DE TEMPO">
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
@@ -690,12 +693,20 @@ public class Venda_ProdutoDAO {
             rs = stmt.executeQuery();
             
             JRResultSetDataSource resultDs = new JRResultSetDataSource(rs);
-//            Map<String, Object> aaa = new HashMap<>();
-//            aaa.put("Parameter1", 19);
             
-            jpPrint = JasperFillManager.fillReport("RelatorioVendaIntervaloTempo.jasper", null, resultDs);
+            SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+            Date dateFromDb1 = dateForm.parse(data1);
+            Date dateFromDb2 = dateForm.parse(data2);
+            SimpleDateFormat dateForm2 = new SimpleDateFormat("dd/MM/yyyy");
+            String dateToShow1 = dateForm2.format(dateFromDb1);
+            String dateToShow2 = dateForm2.format(dateFromDb2);
             
+            Map<String, Object> dateMap = new HashMap<String, Object>();
             
+            dateMap.put("data1", dateToShow1);
+            dateMap.put("data2", dateToShow2);
+            
+            jpPrint = JasperFillManager.fillReport("RelatorioVendaIntervaloTempo.jasper", dateMap, resultDs);
             
         }
         catch(SQLException e){
