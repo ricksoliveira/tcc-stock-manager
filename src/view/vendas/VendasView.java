@@ -1195,6 +1195,8 @@ public class VendasView extends javax.swing.JFrame {
                     Logger.getLogger(VendasView.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (JRException ex) {
                     Logger.getLogger(VendasView.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(VendasView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
