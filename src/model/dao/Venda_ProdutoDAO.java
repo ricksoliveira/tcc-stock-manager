@@ -7,7 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import model.bean.VendaCompleta;
 import net.sf.jasperreports.engine.JRException;
@@ -72,7 +74,7 @@ public class Venda_ProdutoDAO {
                                             + "JOIN promo AS promo "
                                                 + "ON promo.promo_id = v.promo "
                                         + "WHERE v.venda_id > 0 "
-                                        + "ORDER BY vp.venda_id, vp.produto_id");
+                                        + "ORDER BY vp.venda_id DESC, vp.produto_id ASC");
             rs = stmt.executeQuery();
             
             while(rs.next()){
@@ -130,7 +132,7 @@ public class Venda_ProdutoDAO {
                                             + "JOIN promo AS promo "
                                                 + "ON promo.promo_id = v.promo "
                                         + "WHERE v.venda_id = ? AND v.venda_id > 0 "
-                                        + "ORDER BY vp.venda_id, vp.produto_id");
+                                        + "ORDER BY vp.venda_id DESC, vp.produto_id ASC");
             stmt.setInt(1, id);
             
             rs = stmt.executeQuery();
@@ -189,7 +191,7 @@ public class Venda_ProdutoDAO {
                                             + "JOIN promo AS promo "
                                                 + "ON promo.promo_id = v.promo "
                                         + "WHERE vp.produto_id = ? AND v.venda_id > 0 "
-                                        + "ORDER BY vp.venda_id, vp.produto_id");
+                                        + "ORDER BY vp.venda_id DESC, vp.produto_id ASC");
             stmt.setInt(1, id);
             
             rs = stmt.executeQuery();
@@ -248,7 +250,7 @@ public class Venda_ProdutoDAO {
                                             + "JOIN promo AS promo "
                                                 + "ON promo.promo_id = v.promo "
                                         + "WHERE p.cod_interno LIKE ? AND v.venda_id > 0 "
-                                        + "ORDER BY vp.venda_id, vp.produto_id");
+                                        + "ORDER BY vp.venda_id DESC, vp.produto_id ASC");
             stmt.setString(1, "%" + codigo + "%");
             
             rs = stmt.executeQuery();
@@ -307,7 +309,7 @@ public class Venda_ProdutoDAO {
                                             + "JOIN promo AS promo "
                                                 + "ON promo.promo_id = v.promo "
                                         + "WHERE promo.nome LIKE ? AND v.venda_id > 0 "
-                                        + "ORDER BY vp.venda_id, vp.produto_id");
+                                        + "ORDER BY vp.venda_id DESC, vp.produto_id ASC");
             stmt.setString(1, "%" + promo + "%");
             
             rs = stmt.executeQuery();
@@ -366,7 +368,7 @@ public class Venda_ProdutoDAO {
                                             + "JOIN promo AS promo "
                                                 + "ON promo.promo_id = v.promo "
                                         + "WHERE mp.nome LIKE ? AND v.venda_id > 0 "
-                                        + "ORDER BY vp.venda_id, vp.produto_id");
+                                        + "ORDER BY vp.venda_id DESC, vp.produto_id ASC");
             stmt.setString(1, "%" + pagamento + "%");
             
             rs = stmt.executeQuery();
@@ -425,7 +427,7 @@ public class Venda_ProdutoDAO {
                                             + "JOIN promo AS promo "
                                                 + "ON promo.promo_id = v.promo "
                                         + "WHERE u.nome LIKE ? AND v.venda_id > 0 "
-                                        + "ORDER BY vp.venda_id, vp.produto_id");
+                                        + "ORDER BY vp.venda_id DESC, vp.produto_id ASC");
             stmt.setString(1, "%" + vendedor + "%");
             
             rs = stmt.executeQuery();
@@ -484,10 +486,9 @@ public class Venda_ProdutoDAO {
                                             + "JOIN promo AS promo "
                                                 + "ON promo.promo_id = v.promo "
                                         + "WHERE v.data BETWEEN ? AND ? "
-                                        + "ORDER BY vp.venda_id, vp.produto_id");
+                                        + "ORDER BY vp.venda_id DESC, vp.produto_id ASC");
             stmt.setString(1, data1);
             stmt.setString(2, data2);
-            
             rs = stmt.executeQuery();
             
             while(rs.next()){
@@ -619,7 +620,7 @@ public class Venda_ProdutoDAO {
     
     
     public JasperPrint getReport(int id) throws SQLException, JRException{
-        //<editor-fold defaultstate="collapsed" desc="GET VALOR TOTAL DA VENDA">
+        //<editor-fold defaultstate="collapsed" desc="GET REPORT DE UMA VENDA">
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -665,6 +666,49 @@ public class Venda_ProdutoDAO {
         return jpPrint;
 //</editor-fold>
     }
+    
+    public JasperPrint getReportByInterval(String data1, String data2) throws SQLException, JRException{
+        //<editor-fold defaultstate="collapsed" desc="GET REPORT DE UM INTERVALO DE TEMPO">
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        JasperPrint jpPrint = null;
+        
+        try{
+            stmt = con.prepareStatement("select p.cod_interno, p.descricao, c.nome as 'categoria', sum(vp.quantidade) as 'produtos_vendidos', "
+                                            + "v.data, mp.nome as 'metodo_pagamento', sum(vp.subtotal) as 'total_item', vp.venda_id "
+                                        + "from venda_produto vp "
+                                        + "join venda v on vp.venda_id = v.venda_id "
+                                        + "join produto p on p.produto_id = vp.produto_id "
+                                        + "join categoria c on p.categoria = c.categoria_id "
+                                        + "join metodo_pagamento mp on v.metodo_pagamento = mp.metodo_pagamento_id "
+                                        + "where v.data BETWEEN ? AND ? "
+                                        + "group by p.produto_id");
+            stmt.setString(1, data1);
+            stmt.setString(2, data2);
+            rs = stmt.executeQuery();
+            
+            JRResultSetDataSource resultDs = new JRResultSetDataSource(rs);
+//            Map<String, Object> aaa = new HashMap<>();
+//            aaa.put("Parameter1", 19);
+            
+            jpPrint = JasperFillManager.fillReport("RelatorioVendaIntervaloTempo.jasper", null, resultDs);
+            
+            
+            
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro ao exibir relatório: " + e);
+        }
+        finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return jpPrint;
+//</editor-fold>
+    }
+    
     
     public double getTotalParcialAllVendas() throws SQLException{
         //<editor-fold defaultstate="collapsed" desc="GET VALOR TOTAL PARCIAL DE TODAS AS VENDAS">

@@ -81,11 +81,9 @@
                               <Component id="condicaoTxt" alignment="0" max="32767" attributes="0"/>
                               <Component id="dataInsercaoTxt" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                               <Component id="dimensoesTxt" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="precoUnitarioTxt" alignment="0" pref="100" max="32767" attributes="0"/>
-                                  <Component id="quantidadeTxt" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="precoCompraTxt" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="precoUnitarioTxt" alignment="0" pref="100" max="32767" attributes="0"/>
+                              <Component id="quantidadeTxt" alignment="0" max="32767" attributes="0"/>
+                              <Component id="precoCompraTxt" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

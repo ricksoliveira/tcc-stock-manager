@@ -78,9 +78,6 @@ public class HistoricoMensalView extends javax.swing.JFrame {
                 String.format("%,.2f", f.getCmv()),
                 String.format("%,.2f", f.getLucro()),
                 String.format("%,.1f", f.getMargem_lucro()),
-                String.format("%,.2f", f.getCusto_total_estoque()),
-                f.getQuantidade_estoque(),
-                f.getNumero_categorias()
             }); 
             
         }
@@ -103,7 +100,7 @@ public class HistoricoMensalView extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JToolBar.Separator();
         buttonVoltar = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
-        buttonRelatorio = new javax.swing.JButton();
+        buttonRelatorioAcumulativo = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
         jButton2 = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JToolBar.Separator();
@@ -150,17 +147,17 @@ public class HistoricoMensalView extends javax.swing.JFrame {
         jToolBar1.add(buttonVoltar);
         jToolBar1.add(jSeparator3);
 
-        buttonRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/report.png"))); // NOI18N
-        buttonRelatorio.setText("Relatório Acumulativo");
-        buttonRelatorio.setFocusable(false);
-        buttonRelatorio.setMargin(new java.awt.Insets(3, 14, 3, 14));
-        buttonRelatorio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        buttonRelatorio.addActionListener(new java.awt.event.ActionListener() {
+        buttonRelatorioAcumulativo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/report.png"))); // NOI18N
+        buttonRelatorioAcumulativo.setText("Relatório Acumulativo");
+        buttonRelatorioAcumulativo.setFocusable(false);
+        buttonRelatorioAcumulativo.setMargin(new java.awt.Insets(3, 14, 3, 14));
+        buttonRelatorioAcumulativo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        buttonRelatorioAcumulativo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRelatorioActionPerformed(evt);
+                buttonRelatorioAcumulativoActionPerformed(evt);
             }
         });
-        jToolBar1.add(buttonRelatorio);
+        jToolBar1.add(buttonRelatorioAcumulativo);
         jToolBar1.add(jSeparator4);
 
         jButton2.setText("relatorio 2");
@@ -173,7 +170,7 @@ public class HistoricoMensalView extends javax.swing.JFrame {
 
         titulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo.setText("HISTÓRICO DE FINANÇAS MENSAIS");
+        titulo.setText("FINANÇAS DE CADA MÊS");
 
         financaAcumulativaTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         financaAcumulativaTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -202,7 +199,7 @@ public class HistoricoMensalView extends javax.swing.JFrame {
 
         titulo1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         titulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo1.setText("HISTÓRICO DE FINANÇAS ACUMULADAS");
+        titulo1.setText("FINANÇAS ACUMULADAS");
 
         financaMensalTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         financaMensalTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -210,11 +207,11 @@ public class HistoricoMensalView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mês", "Ano", "Fatur. Bruto", "Descontos", "Fatur. Líquido", "CMV", "Lucro", "Margem", "Custo Estoque", "Qntde Estoque", "Nº Categorias"
+                "Mês", "Ano", "Fatur. Bruto", "Descontos", "Fatur. Líquido", "CMV", "Lucro", "Margem"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -226,7 +223,6 @@ public class HistoricoMensalView extends javax.swing.JFrame {
             financaMensalTable.getColumnModel().getColumn(0).setPreferredWidth(20);
             financaMensalTable.getColumnModel().getColumn(1).setPreferredWidth(20);
             financaMensalTable.getColumnModel().getColumn(7).setPreferredWidth(20);
-            financaMensalTable.getColumnModel().getColumn(10).setPreferredWidth(40);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -320,7 +316,7 @@ public class HistoricoMensalView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonVoltarActionPerformed
 
-    private void buttonRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRelatorioActionPerformed
+    private void buttonRelatorioAcumulativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRelatorioAcumulativoActionPerformed
         
         if(financaAcumulativaTable.getSelectedRow() != -1){
             
@@ -350,10 +346,10 @@ public class HistoricoMensalView extends javax.swing.JFrame {
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, "Por favor selecione um relatório.");
+            JOptionPane.showMessageDialog(null, "Por favor selecione um mês.");
         }
         
-    }//GEN-LAST:event_buttonRelatorioActionPerformed
+    }//GEN-LAST:event_buttonRelatorioAcumulativoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,7 +393,7 @@ public class HistoricoMensalView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonHome;
-    private javax.swing.JButton buttonRelatorio;
+    private javax.swing.JButton buttonRelatorioAcumulativo;
     private javax.swing.JButton buttonVoltar;
     private javax.swing.JTable financaAcumulativaTable;
     private javax.swing.JTable financaMensalTable;

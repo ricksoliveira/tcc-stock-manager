@@ -393,6 +393,7 @@ public class NovoProdutoView extends javax.swing.JFrame {
                         Date date = dataInsercaoTxt.getDate();
                         SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
                         String dataString = dateForm.format(date);
+                        System.out.println(dataString);
                         produto.setData_insercao(dataString);
                         
                         if(dimensoesTxt.getText().equals("")){
