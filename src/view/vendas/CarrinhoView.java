@@ -37,9 +37,6 @@ public class CarrinhoView extends javax.swing.JFrame {
     
     private Venda venda = new Venda();
     
-    /** Creates new form NovaVendaView
-     * @param venda
-     * @throws java.sql.SQLException */
     public CarrinhoView(Venda venda) throws SQLException, ParseException {
         initComponents();
         

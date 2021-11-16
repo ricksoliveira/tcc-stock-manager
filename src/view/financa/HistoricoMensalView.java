@@ -102,8 +102,6 @@ public class HistoricoMensalView extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JToolBar.Separator();
         buttonRelatorioAcumulativo = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
-        jButton2 = new javax.swing.JButton();
-        jSeparator5 = new javax.swing.JToolBar.Separator();
         titulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         financaAcumulativaTable = new javax.swing.JTable();
@@ -159,14 +157,6 @@ public class HistoricoMensalView extends javax.swing.JFrame {
         });
         jToolBar1.add(buttonRelatorioAcumulativo);
         jToolBar1.add(jSeparator4);
-
-        jButton2.setText("relatorio 2");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setMargin(new java.awt.Insets(3, 14, 3, 14));
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton2);
-        jToolBar1.add(jSeparator5);
 
         titulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -397,7 +387,6 @@ public class HistoricoMensalView extends javax.swing.JFrame {
     private javax.swing.JButton buttonVoltar;
     private javax.swing.JTable financaAcumulativaTable;
     private javax.swing.JTable financaMensalTable;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -407,7 +396,6 @@ public class HistoricoMensalView extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
-    private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel titulo;
     private javax.swing.JLabel titulo1;
