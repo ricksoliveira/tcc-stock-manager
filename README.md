@@ -45,16 +45,47 @@
 
 # Telas
 
-> ![image](https://user-images.githubusercontent.com/68413884/139557236-8d6482cc-78e4-4d16-923f-39f334d7d76c.png)
-> ![image](https://user-images.githubusercontent.com/68413884/139557244-d743a226-583d-4475-abd0-d458d665b4ce.png)
-> ![image](https://user-images.githubusercontent.com/68413884/139557264-fa42fe24-74ba-4197-b96b-1191afe6051f.png)
-> ![image](https://user-images.githubusercontent.com/68413884/139557272-eb4dfe2f-a290-42be-b5ae-0ebea959e69d.png)
-> ![image](https://user-images.githubusercontent.com/68413884/139557275-3f99c086-f2ef-4f77-a3f1-2111fb9606ab.png)
-> ![image](https://user-images.githubusercontent.com/68413884/139557279-e83c92a1-b950-47df-939c-ee2f3ea09b78.png)
-> ![image](https://user-images.githubusercontent.com/68413884/139557286-dabe8260-1376-4598-8c3c-2abaee9caa5d.png)
-> ![image](https://user-images.githubusercontent.com/68413884/139557303-bf97a2ce-18eb-44e2-a9f4-6f4c0b4914f9.png)
-> ![image](https://user-images.githubusercontent.com/68413884/139557314-62c97c22-dd8e-4d5d-b551-52364db670a3.png)
-> ![image](https://user-images.githubusercontent.com/68413884/139557316-fa59d20b-5afb-4f7b-8f51-cf007df31308.png)
-> ![image](https://user-images.githubusercontent.com/68413884/139557321-ef3ffd8d-7398-4bd0-93d0-311aec65ea87.png)
-> ![image](https://user-images.githubusercontent.com/68413884/139557333-94d60015-d329-4fe6-abdb-e93d68f03aec.png)
-> ![image](https://user-images.githubusercontent.com/68413884/139557345-795ce837-45da-4ea7-9e2d-d5c87ff18e58.png)
+> - ## Tela Inicial
+> ![Home](https://user-images.githubusercontent.com/68413884/141942898-0becfb74-1e60-48a2-bc4c-d40e3fca34cb.jpg)
+> 
+> - ## Categorias
+> ![Categorias](https://user-images.githubusercontent.com/68413884/141943626-d9cba2ad-c269-466f-9627-a2a2028cfad1.jpg)
+> ![Categorias_Excluidas](https://user-images.githubusercontent.com/68413884/141943630-1d7af2ec-91ad-450c-86a8-e7340fe642fe.jpg)
+> 
+> - ## Finanças
+> ![Financas](https://user-images.githubusercontent.com/68413884/141943921-6bf0858f-c38d-4ed5-8167-37e66c73181f.jpg)
+> ![Historico_Mensal](https://user-images.githubusercontent.com/68413884/141943926-865265a6-c9ca-4c18-9bbb-12f6d2b47efe.jpg)
+> ![Relatorio_Financa](https://user-images.githubusercontent.com/68413884/141943927-c0363853-7324-4e60-aa33-0512b37cda0a.jpg)
+> 
+> - ## Fornecedores
+> ![Fornecedores](https://user-images.githubusercontent.com/68413884/141944022-f46386da-5855-41fc-8b00-c75c4814833b.jpg)
+> ![Fornecedores_Excluidos](https://user-images.githubusercontent.com/68413884/141944026-9ef715ac-b473-432e-8cfa-9e01b34baf07.jpg)
+> ![Editar_Fornecedor](https://user-images.githubusercontent.com/68413884/141944019-b3935674-fb35-4adb-b347-ffa4a9a08464.jpg)
+> ![Novo_Fornecedor](https://user-images.githubusercontent.com/68413884/141944027-880a5136-cc23-419b-83fe-2fec8ce8665b.jpg)
+> 
+> - ## Métodos de Pagamento
+> ![MetodosPagamento](https://user-images.githubusercontent.com/68413884/141944161-1c30fcf0-f09e-4091-93d6-2dfefa472eac.jpg)
+> ![MetodosPagamento_Excluidos](https://user-images.githubusercontent.com/68413884/141944166-19b6812f-0108-4e55-aeb2-223fd6d932eb.jpg)
+> 
+> - ## Produtos
+> ![Produtos_Excluidos](https://user-images.githubusercontent.com/68413884/141944224-44f9f407-438b-42ef-a40a-4054064c930a.jpg)
+> ![Produtos](https://user-images.githubusercontent.com/68413884/141944220-9001a1c0-7156-433e-a4ad-c9f396696154.jpg)
+> ![Editar_Produto](https://user-images.githubusercontent.com/68413884/141944215-3fb6d8d3-c573-4b31-87a4-af2bf65a894b.jpg)
+> ![Novo_Produto](https://user-images.githubusercontent.com/68413884/141944219-1327f051-9fb1-4171-a5b5-2650c733f211.jpg)
+> 
+> - ## Promoções
+> ![Promocoes](https://user-images.githubusercontent.com/68413884/141944285-ce856ff1-dcac-41f3-bf2d-f7157a2e7112.jpg)
+> ![Promocoes_Excluidas](https://user-images.githubusercontent.com/68413884/141944290-9acd80b5-4d0d-4182-ada8-cfb79b331c71.jpg)
+> 
+> - ## Usuários
+> ![Usuarios](https://user-images.githubusercontent.com/68413884/141944363-ef42600c-ec61-4488-9d4e-6c6a3fe1216d.jpg)
+> ![Usuarios_Excluidos](https://user-images.githubusercontent.com/68413884/141944367-f4824904-08b5-4eeb-a5cf-9f921c9cfd1d.jpg)
+> ![Editar_Usuario](https://user-images.githubusercontent.com/68413884/141944371-36a8443a-348b-4d17-9b6c-07444b5f17a3.jpg)
+> ![Novo_Usuario](https://user-images.githubusercontent.com/68413884/141944372-ba2596dc-f1f1-43ad-acbb-99720caf5fec.jpg)
+> 
+> - ## Vendas
+> ![Nova_Venda](https://user-images.githubusercontent.com/68413884/141944435-11680b7e-e736-413c-a13d-fa0883cc5808.jpg)
+> ![Carrinho](https://user-images.githubusercontent.com/68413884/141944431-98f066f0-253d-4c22-9de2-ece805cf0b85.jpg)
+> ![Vendas](https://user-images.githubusercontent.com/68413884/141944442-f72d2f0f-e1cb-4946-a9bd-d0f0ec48bbfa.jpg)
+> ![Relatorio_Venda](https://user-images.githubusercontent.com/68413884/141944437-b40e2ebf-c04f-40fc-8a33-65177550c0a8.jpg)
+> ![Relatorio_Vendas](https://user-images.githubusercontent.com/68413884/141944440-50332fb8-cc0b-443b-a5e1-f3a9068d75dc.jpg)
