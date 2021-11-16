@@ -17,7 +17,7 @@
 > ![RNF TG](https://user-images.githubusercontent.com/68413884/139557048-bcf16f2b-0a04-4fd5-8961-e3f1791cb91c.png)
 > 
 > - ### Diagrama de Caso de Uso
-> ![caso de uso TG](https://user-images.githubusercontent.com/68413884/139557033-8acc1ced-400b-4307-90ad-e480985fcc0d.png)
+> ![caso de uso TG](https://user-images.githubusercontent.com/68413884/141940468-94b1e16d-5d31-415c-b3ff-c4faab6ed5e6.png)
 > 
 > - ### Diagramas de Sequência
 >   - ### Realizar Venda
@@ -36,10 +36,10 @@
 >   ![Gerar Relatório de Venda](https://user-images.githubusercontent.com/68413884/139557039-1a320ed3-e021-458f-b0cd-234efffb1741.png)
 >   
 > - ### Diagrama de Entidade e Relacionamento
-> ![MER - TG - Copy](https://user-images.githubusercontent.com/68413884/139556954-4259801b-5628-4d04-8197-11e3619c04a9.png)
+> ![MER - TG](https://user-images.githubusercontent.com/68413884/141940465-08cc7290-f399-4786-bc37-e66c680d293c.png)
 > 
 > - ### Diagrama de Classes
-> ![classe TG](https://user-images.githubusercontent.com/68413884/139557036-8984ef23-8a7a-42c4-96f5-150540ea5e77.png)
+> ![Classe - TG](https://user-images.githubusercontent.com/68413884/141940462-e4080734-6f42-457d-aa43-7f7ecc4325be.png)
 
 <br/>
 
