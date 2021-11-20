@@ -1,4 +1,4 @@
-# TCC Stock Manager
+# TG - Gerenciador de Estoques
 
 > Esta aplicação é um software para a gestão de estoques e banco de dados utilizando as tecnologias `Java` e `MySQL`.
 > 
@@ -8,32 +8,83 @@
 
 <br/>
 
+# Sumário
+
+> -  [Instruções de Uso](https://github.com/ricksoliveira/tcc-stock-manager#instruções-de-uso)
+> -  [Modelagem](https://github.com/ricksoliveira/tcc-stock-manager#modelagem)
+>     - [Requisitos Funcionais](https://github.com/ricksoliveira/tcc-stock-manager#requisitos-funcionais)
+>     - [Requisitos Não Funcionais](https://github.com/ricksoliveira/tcc-stock-manager#requisitos-não-funcionais)
+>     - [Diagrama de Caso de Uso](https://github.com/ricksoliveira/tcc-stock-manager#diagrama-de-caso-de-uso)
+>     - [Diagramas de Sequência](https://github.com/ricksoliveira/tcc-stock-manager#diagramas-de-sequência)
+>       - [Realizar Venda](https://github.com/ricksoliveira/tcc-stock-manager#realizar-venda)
+>       - [Cadastrar Produto](https://github.com/ricksoliveira/tcc-stock-manager#cadastrar-produto)
+>       - [Editar Produto](https://github.com/ricksoliveira/tcc-stock-manager#editar-produto)
+>       - [Excluir Produto](https://github.com/ricksoliveira/tcc-stock-manager#excluir-produto)
+>       - [Gerar Relatório](https://github.com/ricksoliveira/tcc-stock-manager#gerar-relatório)
+>     - [Diagrama de Entidade e Relacionamento (MER)](https://github.com/ricksoliveira/tcc-stock-manager#diagrama-de-entidade-e-relacionamento)
+>     - [Diagrama de Classes](https://github.com/ricksoliveira/tcc-stock-manager#diagrama-de-classes)
+> - [Telas](https://github.com/ricksoliveira/tcc-stock-manager#telas)
+> - [Aplicações Futuras](https://github.com/ricksoliveira/tcc-stock-manager#funcionalidades-a-serem-implementadas)
+
+<br/>
+
+# Instruções de uso
+
+> - ### Requisitos:
+>     - [Java](https://www.java.com/en/) (qualquer versão acima da versão 8)
+>     - [MySQL](https://www.mysql.com)
+> 
+> 1. Crie um banco de dados chamado `tgdb` com as seguintes características:
+>     - Usuário = root
+>     - Senha = root123
+>     - Host = localhost
+>     - Porta = 3306
+> 
+> 2. Rode o *script* de criação das tabelas, que pode ser encontrado **[aqui](https://pastebin.com/uu8ME2EZ)**.
+>  
+> 3. Com o *schema* criado, baixe o ZIP deste projeto conforme mostrado no GIF abaixo:
+> 
+> ![download](https://user-images.githubusercontent.com/68413884/142742031-b17cd44d-6591-45a8-a4a9-773ff90341bd.gif)
+> 
+> 4. Extraia o ZIP em qualquer lugar e clique no executável `TG_Estoque.jar` localizado no caminho abaixo (também mostrado no GIF em seguida):
+> ```
+>   /tcc-stock-manager-master/dist/TG_Estoque.jar
+> ```
+> 
+> ![file](https://user-images.githubusercontent.com/68413884/142742246-848ee64a-32de-40f1-ad64-2d099d3f62c3.gif)
+> 
+> 5. Caso você desejar, pode retirar a pasta `dist` de dentro do projeto e apagar o resto, uma vez que apenas a pasta `dist` é necessária para a aplicação rodar.
+> 
+>     - ***AVISO: NÃO REMOVA NENHUM ARQUIVO DA PASTA 'DIST' OU DA PASTA 'LIB' DENTRO DELA, CASO CONTRÁRIO A APLICAÇÃO NÃO FUNCIONARÁ***
+
+<br/>
+
 # Modelagem
 
 > - ### Requisitos Funcionais
-> ![RF TG](https://user-images.githubusercontent.com/68413884/139557047-9ce898d8-9955-453a-9986-8e61284426bb.png)
+> ![RF_TG](https://user-images.githubusercontent.com/68413884/142740375-a68513ae-5872-4491-b65d-c8e09a5d1273.png)
 > 
 > - ### Requisitos Não Funcionais
-> ![RNF TG](https://user-images.githubusercontent.com/68413884/139557048-bcf16f2b-0a04-4fd5-8961-e3f1791cb91c.png)
+> ![RNF_TG](https://user-images.githubusercontent.com/68413884/142740393-24925ec9-3290-485c-8168-791683a80e1f.png)
 > 
 > - ### Diagrama de Caso de Uso
 > ![caso de uso TG](https://user-images.githubusercontent.com/68413884/141940468-94b1e16d-5d31-415c-b3ff-c4faab6ed5e6.png)
 > 
 > - ### Diagramas de Sequência
 >   - ### Realizar Venda
->   ![Realizar Venda](https://user-images.githubusercontent.com/68413884/139557041-c38b928a-f74e-417f-85af-eaf3962fc56c.png)
+>   ![Realizar Venda](https://user-images.githubusercontent.com/68413884/142740496-13607125-007d-4e3a-8912-f6edd394fa9a.png)
 >   
 >   - ### Cadastrar Produto
->   ![Cadastrar Produto](https://user-images.githubusercontent.com/68413884/139557038-62f87c0b-0492-48e7-89c6-54cbfd7d60ba.png)
+>   ![Cadastrar Produto](https://user-images.githubusercontent.com/68413884/142740497-9ee4852d-e341-47c2-a9cc-3d0459b379ff.png)
 >   
 >   - ### Editar Produto
->   ![Editar Produto](https://user-images.githubusercontent.com/68413884/139557042-66922fc2-56ca-45fb-ad70-342102ee05fa.png)
+>   ![Editar Produto](https://user-images.githubusercontent.com/68413884/142740491-01b2335b-82ae-463a-b4ca-84449376b1e9.png)
 >   
 >   - ### Excluir Produto
->   ![Excluir Produto](https://user-images.githubusercontent.com/68413884/139557043-cc3fc8bf-6bfd-4071-80c3-4aca64166d9b.png)
+>   ![Excluir Produto](https://user-images.githubusercontent.com/68413884/142740492-c0f65848-d674-42b3-80c7-5229323f69be.png)
 >   
 >   - ### Gerar Relatório
->   ![Gerar Relatório de Venda](https://user-images.githubusercontent.com/68413884/139557039-1a320ed3-e021-458f-b0cd-234efffb1741.png)
+>   ![Gerar Relatório de Venda](https://user-images.githubusercontent.com/68413884/142740494-cd47be39-c12a-40f4-b8ec-a8eeb0a39524.png)
 >   
 > - ### Diagrama de Entidade e Relacionamento
 > ![MER - TG](https://user-images.githubusercontent.com/68413884/141940465-08cc7290-f399-4786-bc37-e66c680d293c.png)
@@ -89,3 +140,13 @@
 > ![Vendas](https://user-images.githubusercontent.com/68413884/141944442-f72d2f0f-e1cb-4946-a9bd-d0f0ec48bbfa.jpg)
 > ![Relatorio_Venda](https://user-images.githubusercontent.com/68413884/141944437-b40e2ebf-c04f-40fc-8a33-65177550c0a8.jpg)
 > ![Relatorio_Vendas](https://user-images.githubusercontent.com/68413884/141944440-50332fb8-cc0b-443b-a5e1-f3a9068d75dc.jpg)
+
+<br/>
+
+# Funcionalidades a serem implementadas:
+
+> - ## RF
+> ![RF_Futuro](https://user-images.githubusercontent.com/68413884/142740550-71b85303-3f47-4700-b57c-8e09fdeae4b3.png)
+> 
+> - ## RNF
+> ![RNF_Futuro](https://user-images.githubusercontent.com/68413884/142740560-9e7aa236-a604-40ac-a895-ff1a23c1ca59.png)
